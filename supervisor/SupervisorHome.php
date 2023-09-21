@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Master Page</title>
+    <title>Home</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="css/style.css" rel="stylesheet" />
@@ -67,66 +67,52 @@
                     </tr>
 
                     <?php
-                    // Include any necessary PHP libraries and configurations here
                     // Define the database connection string
                     $cs = 'your_database_connection_string';
 
                     // Define the current date
-                    $currentDate = new DateTime('2023-07-19 15:30:00');
-
-                    // Establish a database connection
+                    $currentDate = date('Y-m-d'); // Format: YYYY-MM-DD
                     
-                    try {
-                        // Create a connection
-                        $con = new mysqli('localhost', 'root', '', 'internship');
+                    // Create a connection
+                    $con = new mysqli('localhost', 'root', '', 'internship');
 
-                        // Check for connection errors
-                        if ($con->connect_error) {
-                            throw new Exception("Connection failed: " . $con->connect_error);
-                        } else {
-                            $sql = "SELECT Stud.studID, Stud.studName, Stud.studEmail, Stud.studPhoneNo, Stud.studQualification, Ses.sessionID
+                    // Check for connection errors
+                    if ($con->connect_error) {
+                        throw new Exception("Connection failed: " . $con->connect_error);
+                    } else {
+                        //generate the record in the table
+                        $sql = "SELECT Stud.studID, Stud.studName, Stud.studEmail, Stud.studPhoneNo, Stud.studQualification, Ses.sessionID
                         FROM Student Stud, Internship I, Session Ses
                         WHERE Stud.studID = I.studID
                         AND I.sessionID = Ses.sessionID
-                        AND startMonthYear < '" . $currentDate->format('Y-m-d H:i:s') . "'
-                        AND endMonthYear > '" . $currentDate->format('Y-m-d H:i:s') . "'";
+                        AND startMonthYear < '" . $currentDate . "'
+                        AND endMonthYear > '" . $currentDate . "'";
 
-                            $result = $con->query($sql);
+                        $result = $con->query($sql);
 
-                            if ($result->num_rows > 0) {
+                        if ($result->num_rows > 0) {
 
-                                while ($row = $result->fetch_assoc()) {
-                                    echo '<tr  data-student-id="' . $row['studID'] . '">';
-                                    echo '<td>' . $row['studID'] . '</td>';
-                                    echo '<td>' . $row['studName'] . '</td>';
-                                    echo '<td>' . $row['studEmail'] . '</td>';
-                                    echo '<td>' . $row['studPhoneNo'] . '</td>';
-                                    echo '<td>' . $row['studQualification'] . '</td>';
-                                    echo '<td>' . $row['sessionID'] . '</td>';
-                                    echo '</tr>';
-                                }
-
-
-                            } else {
-                                echo '<tr>';
-                                echo '<td colspan="6" class="text-center"> No records found.</td>';
+                            while ($row = $result->fetch_assoc()) {
+                                echo '<tr  data-student-id="' . $row['studID'] . '">';
+                                echo '<td>' . $row['studID'] . '</td>';
+                                echo '<td>' . $row['studName'] . '</td>';
+                                echo '<td>' . $row['studEmail'] . '</td>';
+                                echo '<td>' . $row['studPhoneNo'] . '</td>';
+                                echo '<td>' . $row['studQualification'] . '</td>';
+                                echo '<td>' . $row['sessionID'] . '</td>';
                                 echo '</tr>';
                             }
 
-                            $con->close();
+
+                        } else {
+                            echo '<tr>';
+                            echo '<td colspan="6" class="text-center"> No records found.</td>';
+                            echo '</tr>';
                         }
 
-                        // Continue with your database operations here
-                        // ...
-                    
-                    } catch (Exception $e) {
-                        // Handle the exception
-                        echo '<tr >';
-                        echo '<td colspan="6" class="text-center ">Sorry, there was an issue with the database. Please try again later.</td>';
-                        echo '</tr>';
-
-                        error_log('Database connection error: ' . $e->getMessage(), 0); // Log the error message
+                        $con->close();
                     }
+
 
                     ?>
                 </table>
@@ -134,7 +120,7 @@
                 <script type="text/javascript">
                     function viewStudent(id) {
                         // Perform a client-side redirection to the StudentDetail.aspx page with the extracted ID
-                        window.location.href = "StudentDetail.aspx?StudID=" + id;
+                        window.location.href = "StudentDetail.php?StudID=" + id;
                     }
 
                     // Attach a click event listener to each row in the table
