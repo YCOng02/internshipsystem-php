@@ -19,127 +19,122 @@
         integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
         crossorigin="anonymous"></script>
 
-    <form id="form1" runat="server">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container">
-                <a class="navbar-brand" href="#">
-                    <img src="../image/logo.png" width="250" height="80" />
-                </a>
-                <div class="navbar-container">
-                    <div class="collapse navbar-collapse master" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="supervisor">Home <span class="sr-only">(current)</span></a>
-                            </li>
-                        </ul>
-                    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="../image/logo.png" width="250" height="80" />
+            </a>
+            <div class="navbar-container">
+                <div class="collapse navbar-collapse master" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="supervisor">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                    </ul>
                 </div>
-
             </div>
-        </nav>
 
-        <div class="container row justify-content-md-center mx-auto">
-            <div class="nav nav-tabs border-0" id="nav-tab" role="tablist">
-                <button id="btnCurrent" class="nav-link active w-50 text-white border-0"
-                    style="background-color: #dc143c">Current</button>
-                <button id="btnUpcoming" class="nav-link w-50 text-black" style="border-color: #FFFBD6"
-                    onclick="redirectToUpcoming()">Upcoming</button>
-            </div>
         </div>
+    </nav>
 
-        <script type="text/javascript">
-            function redirectToUpcoming() {
-                // Redirect to the "Upcoming.php" page when the button is clicked
-                window.location.href = "Upcoming.php";
-            }
-        </script>
+    <div class="container row justify-content-md-center mx-auto">
+        <div class="nav nav-tabs border-0" id="nav-tab" role="tablist">
+            <button id="btnCurrent" class="nav-link active w-50 text-white border-0"
+                style="background-color: #dc143c">Current</button>
+            <button id="btnUpcoming" class="nav-link w-50 text-black" style="border-color: #FFFBD6"
+                onclick="redirectToUpcoming()">Upcoming</button>
+        </div>
+    </div>
 
-        <div style="overflow-x: scroll;" class="container row justify-content-md-center mx-auto">
-            <table id="StudentGV" class="table w-100 table-striped my-1 table-bordered table-responsive table-hover">
-                <table class="table w-100 table-striped my-1 table-bordered table-responsive table-hover">
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone No</th>
-                        <th>Qualification</th>
-                        <th>Session</th>
-                    </tr>
+    <script type="text/javascript">
+        function redirectToUpcoming() {
+            // Redirect to the "Upcoming.php" page when the button is clicked
+            window.location.href = "Upcoming.php";
+        }
+    </script>
 
-                    <?php
-                    // Define the database connection string
-                    $cs = 'your_database_connection_string';
+    <div style="overflow-x: scroll;" class="container row justify-content-md-center mx-auto">
+        <table id="StudentGV" class="table w-100 table-striped my-1 table-bordered table-responsive table-hover">
+            <table class="table w-100 table-striped my-1 table-bordered table-responsive table-hover">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone No</th>
+                    <th>Qualification</th>
+                    <th>Session</th>
+                </tr>
 
-                    // Define the current date
-                    $currentDate = date('Y-m-d'); // Format: YYYY-MM-DD
-                    
-                    // Create a connection
-                    $con = new mysqli('localhost', 'root', '', 'internship');
+                <?php
+                // Define the current date
+                $currentDate = date('Y-m-d'); // Format: YYYY-MM-DD
+                
+                // Create a connection
+                $con = new mysqli('localhost', 'root', '', 'internship');
 
-                    // Check for connection errors
-                    if ($con->connect_error) {
-                        throw new Exception("Connection failed: " . $con->connect_error);
-                    } else {
-                        //generate the record in the table
-                        $sql = "SELECT Stud.studID, Stud.studName, Stud.studEmail, Stud.studPhoneNo, Stud.studQualification, Ses.sessionID
+                // Check for connection errors
+                if ($con->connect_error) {
+                    throw new Exception("Connection failed: " . $con->connect_error);
+                } else {
+                    //generate the record in the table
+                    $sql = "SELECT Stud.studID, Stud.studName, Stud.studEmail, Stud.studPhoneNo, Stud.studQualification, Ses.sessionID
                         FROM Student Stud, Internship I, Session Ses
                         WHERE Stud.studID = I.studID
                         AND I.sessionID = Ses.sessionID
                         AND startMonthYear < '" . $currentDate . "'
                         AND endMonthYear > '" . $currentDate . "'";
 
-                        $result = $con->query($sql);
+                    $result = $con->query($sql);
 
-                        if ($result->num_rows > 0) {
+                    if ($result->num_rows > 0) {
 
-                            while ($row = $result->fetch_assoc()) {
-                                echo '<tr style="cursor: pointer;" onclick="viewStudent(' . $row['studID'] . ')" data-href="page_url.php?studID=' . $row['studID'] . '">';
-                                echo '<td>' . $row['studID'] . '</td>';
-                                echo '<td>' . $row['studName'] . '</td>';
-                                echo '<td>' . $row['studEmail'] . '</td>';
-                                echo '<td>' . $row['studPhoneNo'] . '</td>';
-                                echo '<td>' . $row['studQualification'] . '</td>';
-                                echo '<td>' . $row['sessionID'] . '</td>';
-                                echo '</tr>';
-                            }
-
-
-                        } else {
-                            echo '<tr>';
-                            echo '<td colspan="6" class="text-center"> No records found.</td>';
+                        while ($row = $result->fetch_assoc()) {
+                            echo '<tr style="cursor: pointer;" onclick="viewStudent(' . $row['studID'] . ')" data-href="page_url.php?studID=' . $row['studID'] . '">';
+                            echo '<td>' . $row['studID'] . '</td>';
+                            echo '<td>' . $row['studName'] . '</td>';
+                            echo '<td>' . $row['studEmail'] . '</td>';
+                            echo '<td>' . $row['studPhoneNo'] . '</td>';
+                            echo '<td>' . $row['studQualification'] . '</td>';
+                            echo '<td>' . $row['sessionID'] . '</td>';
                             echo '</tr>';
                         }
 
-                        $con->close();
+
+                    } else {
+                        echo '<tr>';
+                        echo '<td colspan="6" class="text-center"> No records found.</td>';
+                        echo '</tr>';
                     }
 
+                    $con->close();
+                }
 
-                    ?>
-                </table>
-                <!--If the user click a row, it will be redirect to the student detail page-->
-                <script type="text/javascript">
-                    function viewStudent(id) {
-                        // Perform a client-side redirection to the StudentDetail.aspx page with the extracted ID
-                        window.location.href = "StudentDetail.php?StudID=" + id;
-                    }
-                </script>
 
+                ?>
             </table>
-        </div>
+            <!--If the user click a row, it will be redirect to the student detail page-->
+            <script type="text/javascript">
+                function viewStudent(id) {
+                    // Perform a client-side redirection to the StudentDetail.aspx page with the extracted ID
+                    window.location.href = "StudentDetail.php?StudID=" + encodeURIComponent(id);
+                }
+            </script>
 
-        <footer class="bg-light text-black pt-5 pb-4">
-            <div class="container text-center text-md-left">
-                <hr class="mb-4">
-                <div class="align-items-center">
-                    <div class="col-md-12 col-lg-12 text-center">
-                        <p>Copyright © 2023 All Rights Reserved by:
-                            <strong>2023 - TAR UMT FOCS ITP</strong>
-                        </p>
-                    </div>
+        </table>
+    </div>
+
+    <footer class="bg-light text-black pt-5 pb-4">
+        <div class="container text-center text-md-left">
+            <hr class="mb-4">
+            <div class="align-items-center">
+                <div class="col-md-12 col-lg-12 text-center">
+                    <p>Copyright © 2023 All Rights Reserved by:
+                        <strong>2023 - TAR UMT FOCS ITP</strong>
+                    </p>
                 </div>
             </div>
-        </footer>
-    </form>
+        </div>
+    </footer>
 </body>
 
 </html>
