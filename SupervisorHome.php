@@ -15,13 +15,6 @@
 </head>
 
 <body style="min-height:100vh" class="bg-bright">
-    <script type="text/javascript">
-        function viewStudent(id) {
-            // Perform a client-side redirection to the StudentDetail.aspx page with the extracted ID
-            window.location.href = "StudentDetail.aspx?StudID=" + id;
-        }  
-    </script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
         crossorigin="anonymous"></script>
@@ -34,13 +27,7 @@
                 </a>
                 <div class="navbar-container">
                     <div class="collapse navbar-collapse master" id="navbarNav">
-                        <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal" DataSourceID="SiteMapDataSource1"
-                            StaticDisplayLevels="2" StaticSubMenuIndent="16px" CssClass="navbar-nav ml-auto">
-                            <StaticMenuItemStyle CssClass="nav-item" />
-                            <StaticSelectedStyle CssClass="nav-item active" />
-                            <StaticHoverStyle CssClass="nav-item active" />
-                        </asp:Menu>
-                        <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" SiteMapProvider="Supervisor" />
+
                     </div>
                 </div>
 
@@ -51,37 +38,92 @@
             <div class="nav nav-tabs border-0" id="nav-tab" role="tablist">
                 <button id="btnCurrent" class="nav-link active w-50 text-white border-0"
                     style="background-color: #dc143c">Current</button>
-                <button id="btnUpcoming" class="nav-link w-50 text-black"
-                    style="border-color: #FFFBD6">Upcoming</button>
+                <button id="btnUpcoming" class="nav-link w-50 text-black" style="border-color: #FFFBD6"
+                    onclick="redirectToUpcoming()">Upcoming</button>
             </div>
         </div>
 
+        <script type="text/javascript">
+            function redirectToUpcoming() {
+                // Redirect to the "Upcoming.php" page when the button is clicked
+                window.location.href = "Upcoming.php";
+            }
+        </script>
+
         <div style="overflow-x: scroll;" class="container row justify-content-md-center mx-auto">
             <table id="StudentGV" class="table w-100 table-striped my-1 table-bordered table-responsive table-hover">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone No</th>
-                        <th>Qualification</th>
-                        <th>Session</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    foreach ($yourDataArray as $row) {
-                        echo "<tr>";
-                        echo "<td>" . $row['studID'] . "</td>";
-                        echo "<td>" . $row['studName'] . "</td>";
-                        echo "<td>" . $row['studEmail'] . "</td>";
-                        echo "<td>" . $row['studPhoneNo'] . "</td>";
-                        echo "<td>" . $row['studQualification'] . "</td>";
-                        echo "<td>" . $row['sessionID'] . "</td>";
-                        echo "</tr>";
+                <?php
+                // Include any necessary PHP libraries and configurations here
+                // Define the database connection string
+                $cs = 'your_database_connection_string';
+
+                // Define the current date
+                $currentDate = new DateTime('2023-07-19 15:30:00');
+
+                // Establish a database connection
+                $con = new mysqli('hostname', 'username', 'password', 'database_name');
+
+                if ($con->connect_error) {
+                    die('Connection failed: ' . $con->connect_error);
+                }
+
+                $sql = "SELECT Stud.studID, Stud.studName, Stud.studEmail, Stud.studPhoneNo, Stud.studQualification, Ses.sessionID
+                        FROM Student Stud, Internship I, Session Ses
+                        WHERE Stud.studID = I.studID
+                        AND I.sessionID = Ses.sessionID
+                        AND startMonthYear < '" . $currentDate->format('Y-m-d H:i:s') . "'
+                        AND endMonthYear > '" . $currentDate->format('Y-m-d H:i:s') . "'";
+
+                $result = $con->query($sql);
+
+                if ($result->num_rows > 0) {
+                    echo '<table class="table w-100 table-striped my-1 table-bordered table-responsive table-hover">';
+                    echo '<tr>';
+                    echo '<th>ID</th>';
+                    echo '<th>Name</th>';
+                    echo '<th>Email</th>';
+                    echo '<th>Phone No</th>';
+                    echo '<th>Qualification</th>';
+                    echo '<th>Session</th>';
+                    echo '</tr>';
+
+                    while ($row = $result->fetch_assoc()) {
+                        echo '<tr  data-student-id="' . $row['studID'] . '">';
+                        echo '<td>' . $row['studID'] . '</td>';
+                        echo '<td>' . $row['studName'] . '</td>';
+                        echo '<td>' . $row['studEmail'] . '</td>';
+                        echo '<td>' . $row['studPhoneNo'] . '</td>';
+                        echo '<td>' . $row['studQualification'] . '</td>';
+                        echo '<td>' . $row['sessionID'] . '</td>';
+                        echo '</tr>';
                     }
-                    ?>
-                </tbody>
+
+                    echo '</table>';
+                } else {
+                    echo 'No records found.';
+                }
+
+                $con->close();
+                ?>
+
+                <script type="text/javascript">
+                    function viewStudent(id) {
+                        // Perform a client-side redirection to the StudentDetail.aspx page with the extracted ID
+                        window.location.href = "StudentDetail.aspx?StudID=" + id;
+                    }
+
+                    // Attach a click event listener to each row in the table
+                    document.addEventListener("DOMContentLoaded", function () {
+                        var rows = document.querySelectorAll("#StudentGV tbody tr");
+                        for (var i = 0; i < rows.length; i++) {
+                            rows[i].addEventListener("click", function () {
+                                // Get the student ID from the data attribute or any other suitable way
+                                var id = this.getAttribute("data-student-id");
+                                viewStudent(id);
+                            });
+                        }
+                    });
+                </script>
             </table>
         </div>
 
