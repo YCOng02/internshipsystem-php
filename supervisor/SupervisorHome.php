@@ -93,7 +93,7 @@
                         if ($result->num_rows > 0) {
 
                             while ($row = $result->fetch_assoc()) {
-                                echo '<tr  data-student-id="' . $row['studID'] . '">';
+                                echo '<tr style="cursor: pointer;" onclick="viewStudent(' . $row['studID'] . ')" data-href="page_url.php?studID=' . $row['studID'] . '">';
                                 echo '<td>' . $row['studID'] . '</td>';
                                 echo '<td>' . $row['studName'] . '</td>';
                                 echo '<td>' . $row['studEmail'] . '</td>';
@@ -122,18 +122,6 @@
                         // Perform a client-side redirection to the StudentDetail.aspx page with the extracted ID
                         window.location.href = "StudentDetail.php?StudID=" + id;
                     }
-
-                    // Attach a click event listener to each row in the table
-                    document.addEventListener("DOMContentLoaded", function () {
-                        var rows = document.querySelectorAll("#StudentGV tbody tr");
-                        for (var i = 0; i < rows.length; i++) {
-                            rows[i].addEventListener("click", function () {
-                                // Get the student ID from the data attribute or any other suitable way
-                                var id = this.getAttribute("data-student-id");
-                                viewStudent(id);
-                            });
-                        }
-                    });
                 </script>
 
             </table>
