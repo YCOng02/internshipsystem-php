@@ -106,6 +106,7 @@
                 $con->close();
                 ?>
 
+                <!--If the user click a row, it will be redirect to the student detail page-->
                 <script type="text/javascript">
                     function viewStudent(id) {
                         // Perform a client-side redirection to the StudentDetail.aspx page with the extracted ID
@@ -124,6 +125,7 @@
                         }
                     });
                 </script>
+
             </table>
         </div>
 
