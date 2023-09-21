@@ -1,0 +1,127 @@
+
+* {
+    margin: 0;
+}
+
+body {
+    font-family: "Trebuchet MS";
+    vertical-align: middle;
+    overflow: auto;
+    min-height: 100%;
+}
+
+#content {
+    width: 80%;
+    margin: 0 auto;
+    min-height: 100%;
+    overflow: auto;
+    background-color: white;
+}
+
+
+.master .navbar-nav a {
+    font-family: "Sen", sans-serif;
+    margin: 5px 10px 5px 10px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.collapse.navbar-collapse.master {
+    background-color: #dc143c;
+}
+
+.master .nav-item:hover {
+    color: lightgray;
+}
+
+.navbar-container {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+}
+
+
+d {
+    gound .cardd
+}
+
+
+/* login */
+
+.loginLink {
+    text-decoration: none;
+    color: black;
+}
+
+.btn-default {
+    padding: 6px;
+    border-radius: 0.25rem;
+    border-color: black;
+    background: #dc143c;
+    color: white
+}
+
+   .btn-default:hover {
+        border-color: black;
+        color: black;
+        background: none;
+    }
+
+.text-heading {
+    color: #f4e618;
+    text-transform: uppercase;
+}
+
+.loginTab.nav-link {
+    color: white;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+    .loginTab.nav-link.active {
+        background: white;
+        border-bottom: 1px solid;
+        color: black;
+        border-radius: 0.25rem;
+    }
+
+
+.loginWindow {
+    background: white;
+    border-top: 1px solid;
+    border-left: 1px solid;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+    color: black;
+    border-radius: 0.25rem;
+}
+
+
+.userInput {
+    border-radius: 0 !important;
+    border: none !important;
+    background: none !important;
+    border-bottom: 1px solid black !important;
+}
+
+.userInput:focus {
+    background: none;
+    outline: none !important;
+    -webkit-box-shadow: none;
+    color: white;
+    border-bottom: 1px solid black;
+}
+
+.form-floating::before {
+    display: none;
+}
+
+
+
+
+
+
+
