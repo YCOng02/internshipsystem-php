@@ -14,7 +14,7 @@
 
 </head>
 
-<body class="bg-bright">
+<body style="min-height:100vh" class="bg-bright">
     <script type="text/javascript">
         function viewStudent(id) {
             // Perform a client-side redirection to the StudentDetail.aspx page with the extracted ID
@@ -25,6 +25,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
         crossorigin="anonymous"></script>
+
     <form id="form1" runat="server">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
@@ -45,11 +46,6 @@
 
             </div>
         </nav>
-
-        <div id="content">
-            <asp:ContentPlaceHolder ID="main" runat="server">
-            </asp:ContentPlaceHolder>
-        </div>
 
         <div class="container row justify-content-md-center mx-auto">
             <div class="nav nav-tabs border-0" id="nav-tab" role="tablist">
@@ -88,6 +84,20 @@
                 </tbody>
             </table>
         </div>
+
+        <footer class="bg-light text-black pt-5 pb-4">
+            <div class="container text-center text-md-left">
+                <hr class="mb-4">
+                <div class="align-items-center">
+                    <div class="col-md-12 col-lg-12 text-center">
+                        <p>Copyright © 2023 All Rights Reserved by:
+                            <strong>2023 - TAR UMT FOCS ITP</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </form>
 </body>
 
 </html>
