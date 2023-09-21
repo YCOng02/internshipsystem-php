@@ -30,7 +30,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
                 <a class="navbar-brand" href="#">
-                    <img src="../image/logo.png" width="250" height="80" />
+                    <img src="image/logo.png" width="250" height="80" />
                 </a>
                 <div class="navbar-container">
                     <div class="collapse navbar-collapse master" id="navbarNav">
@@ -70,6 +70,55 @@
                 </thead>
                 <tbody>
                     <?php
+
+                    //dummy data (can delete)
+                    $yourDataArray = [
+                        [
+                            'studID' => 'S001',
+                            'studName' => 'John Doe',
+                            'studEmail' => 'john@example.com',
+                            'studPhoneNo' => '123-456-7890',
+                            'studQualification' => 'Bachelor of Science',
+                            'sessionID' => 'Session001',
+                        ],
+                        [
+                            'studID' => 'S002',
+                            'studName' => 'Jane Smith',
+                            'studEmail' => 'jane@example.com',
+                            'studPhoneNo' => '987-654-3210',
+                            'studQualification' => 'Master of Arts',
+                            'sessionID' => 'Session002',
+                        ],
+                        [
+                            'studID' => 'S002',
+                            'studName' => 'Jane Smith',
+                            'studEmail' => 'jane@example.com',
+                            'studPhoneNo' => '987-654-3210',
+                            'studQualification' => 'Master of Arts',
+                            'sessionID' => 'Session002',
+                        ],
+                        [
+                            'studID' => 'S002',
+                            'studName' => 'Jane Smith',
+                            'studEmail' => 'jane@example.com',
+                            'studPhoneNo' => '987-654-3210',
+                            'studQualification' => 'Master of Arts',
+                            'sessionID' => 'Session002',
+                        ],
+                        [
+                            'studID' => 'S002',
+                            'studName' => 'Jane Smith',
+                            'studEmail' => 'jane@example.com',
+                            'studPhoneNo' => '987-654-3210',
+                            'studQualification' => 'Master of Arts',
+                            'sessionID' => 'Session002',
+                        ],
+
+                        // Add more dummy data as needed...
+                    ];
+
+
+
                     foreach ($yourDataArray as $row) {
                         echo "<tr>";
                         echo "<td>" . $row['studID'] . "</td>";
