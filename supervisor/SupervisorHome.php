@@ -78,11 +78,11 @@
                     
                     try {
                         // Create a connection
-                        $con = new mysqli('localhost', '', '', 'internship');
+                        $con = new mysqli('localhost', 'root', '', 'internship');
 
                         // Check for connection errors
-                        if ($conn->connect_error) {
-                            throw new Exception("Connection failed: " . $conn->connect_error);
+                        if ($con->connect_error) {
+                            throw new Exception("Connection failed: " . $con->connect_error);
                         } else {
                             $sql = "SELECT Stud.studID, Stud.studName, Stud.studEmail, Stud.studPhoneNo, Stud.studQualification, Ses.sessionID
                         FROM Student Stud, Internship I, Session Ses
@@ -108,7 +108,9 @@
 
 
                             } else {
-                                echo 'No records found.';
+                                echo '<tr>';
+                                echo '<td colspan="6" class="text-center"> No records found.</td>';
+                                echo '</tr>';
                             }
 
                             $con->close();
@@ -119,9 +121,9 @@
                     
                     } catch (Exception $e) {
                         // Handle the exception
-                        echo '<tr colspan="6">';
+                        echo '<tr >';
                         echo '<td colspan="6" class="text-center ">Sorry, there was an issue with the database. Please try again later.</td>';
-                        echo '</tr colspan="6">';
+                        echo '</tr>';
 
                         error_log('Database connection error: ' . $e->getMessage(), 0); // Log the error message
                     }
