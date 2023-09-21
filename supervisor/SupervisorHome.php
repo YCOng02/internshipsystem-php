@@ -23,7 +23,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
                 <a class="navbar-brand" href="#">
-                    <img src="image/logo.png" width="250" height="80" />
+                    <img src="../image/logo.png" width="250" height="80" />
                 </a>
                 <div class="navbar-container">
                     <div class="collapse navbar-collapse master" id="navbarNav">
@@ -56,60 +56,78 @@
 
         <div style="overflow-x: scroll;" class="container row justify-content-md-center mx-auto">
             <table id="StudentGV" class="table w-100 table-striped my-1 table-bordered table-responsive table-hover">
-                <?php
-                // Include any necessary PHP libraries and configurations here
-                // Define the database connection string
-                $cs = 'your_database_connection_string';
+                <table class="table w-100 table-striped my-1 table-bordered table-responsive table-hover">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone No</th>
+                        <th>Qualification</th>
+                        <th>Session</th>
+                    </tr>
 
-                // Define the current date
-                $currentDate = new DateTime('2023-07-19 15:30:00');
+                    <?php
+                    // Include any necessary PHP libraries and configurations here
+                    // Define the database connection string
+                    $cs = 'your_database_connection_string';
 
-                // Establish a database connection
-                $con = new mysqli('hostname', 'username', 'password', 'database_name');
+                    // Define the current date
+                    $currentDate = new DateTime('2023-07-19 15:30:00');
 
-                if ($con->connect_error) {
-                    die('Connection failed: ' . $con->connect_error);
-                }
+                    // Establish a database connection
+                    
+                    try {
+                        // Create a connection
+                        $con = new mysqli('localhost', '', '', 'internship');
 
-                $sql = "SELECT Stud.studID, Stud.studName, Stud.studEmail, Stud.studPhoneNo, Stud.studQualification, Ses.sessionID
+                        // Check for connection errors
+                        if ($conn->connect_error) {
+                            throw new Exception("Connection failed: " . $conn->connect_error);
+                        } else {
+                            $sql = "SELECT Stud.studID, Stud.studName, Stud.studEmail, Stud.studPhoneNo, Stud.studQualification, Ses.sessionID
                         FROM Student Stud, Internship I, Session Ses
                         WHERE Stud.studID = I.studID
                         AND I.sessionID = Ses.sessionID
                         AND startMonthYear < '" . $currentDate->format('Y-m-d H:i:s') . "'
                         AND endMonthYear > '" . $currentDate->format('Y-m-d H:i:s') . "'";
 
-                $result = $con->query($sql);
+                            $result = $con->query($sql);
 
-                if ($result->num_rows > 0) {
-                    echo '<table class="table w-100 table-striped my-1 table-bordered table-responsive table-hover">';
-                    echo '<tr>';
-                    echo '<th>ID</th>';
-                    echo '<th>Name</th>';
-                    echo '<th>Email</th>';
-                    echo '<th>Phone No</th>';
-                    echo '<th>Qualification</th>';
-                    echo '<th>Session</th>';
-                    echo '</tr>';
+                            if ($result->num_rows > 0) {
 
-                    while ($row = $result->fetch_assoc()) {
-                        echo '<tr  data-student-id="' . $row['studID'] . '">';
-                        echo '<td>' . $row['studID'] . '</td>';
-                        echo '<td>' . $row['studName'] . '</td>';
-                        echo '<td>' . $row['studEmail'] . '</td>';
-                        echo '<td>' . $row['studPhoneNo'] . '</td>';
-                        echo '<td>' . $row['studQualification'] . '</td>';
-                        echo '<td>' . $row['sessionID'] . '</td>';
-                        echo '</tr>';
+                                while ($row = $result->fetch_assoc()) {
+                                    echo '<tr  data-student-id="' . $row['studID'] . '">';
+                                    echo '<td>' . $row['studID'] . '</td>';
+                                    echo '<td>' . $row['studName'] . '</td>';
+                                    echo '<td>' . $row['studEmail'] . '</td>';
+                                    echo '<td>' . $row['studPhoneNo'] . '</td>';
+                                    echo '<td>' . $row['studQualification'] . '</td>';
+                                    echo '<td>' . $row['sessionID'] . '</td>';
+                                    echo '</tr>';
+                                }
+
+
+                            } else {
+                                echo 'No records found.';
+                            }
+
+                            $con->close();
+                        }
+
+                        // Continue with your database operations here
+                        // ...
+                    
+                    } catch (Exception $e) {
+                        // Handle the exception
+                        echo '<tr colspan="6">';
+                        echo '<td colspan="6" class="text-center ">Sorry, there was an issue with the database. Please try again later.</td>';
+                        echo '</tr colspan="6">';
+
+                        error_log('Database connection error: ' . $e->getMessage(), 0); // Log the error message
                     }
 
-                    echo '</table>';
-                } else {
-                    echo 'No records found.';
-                }
-
-                $con->close();
-                ?>
-
+                    ?>
+                </table>
                 <!--If the user click a row, it will be redirect to the student detail page-->
                 <script type="text/javascript">
                     function viewStudent(id) {
