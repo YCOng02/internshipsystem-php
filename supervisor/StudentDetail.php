@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student Details</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+</head>
+
+<body style="min-height:100vh" class="bg-bright">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        function confirmMessage() {
+            if (confirm("Are you sure you want to delete this item?")) {
+                window.location.href = "SupervisorHome.php";
+                return true;
+            } else {
+                return false;
+            }
+        }
+    </script>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="SupervisorHome.php">
+                <img src="../image/logo.png" width="250" height="80" />
+            </a>
+            <div class="navbar-container">
+                <div class="collapse navbar-collapse master" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="supervisor">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+    <?php
+    if (isset($_GET['StudID'])) {
+        $studID = $_GET['StudID'];
+    }
+
+    // Create a connection
+    $con = new mysqli('localhost', 'root', '', 'internship');
+
+    // Check for connection errors
+    if ($con->connect_error) {
+        throw new Exception("Connection failed: " . $con->connect_error);
+    } else {
+        //generate the record in the table
+        $sql = "SELECT * FROM Student Stud, Internship I, Session Ses 
+            WHERE Stud.studID = I.studID
+            AND I.sessionID = Ses.sessionID
+            AND Stud.studID = " . $studID;
+
+        $result = $con->query($sql);
+
+        if ($result->num_rows === 1) {
+            $row = $result->fetch_assoc();
+
+            // Access the values directly from the $row variable
+            $ID = $row['studID'];
+            $IC = $row['studIC'];
+            $Name = $row['studName'];
+            $email = $row['studEmail'];
+            $gender = $row['studGender'];
+            $phone = $row['studPhoneNo'];
+            $qualification = $row['studQualification'];
+            $sessionID = $row['sessionID'];
+            $internshipID = $row['internshipID'];
+            $indemnity = $row['indemnity'];
+            $indemnityStatus = $row['indemnityStatus'];
+            $parentAcknowledgement = $row['parentAcknowledgement'];
+            $parentAcknowledgementStatus = $row['parentAcknowledgementStatus'];
+            $companyAcceptance = $row['companyAcceptance'];
+            $companyAcceptanceStatus = $row['companyAcceptanceStatus'];
+            $monthlyReport1 = $row['monthlyReport1'];
+            $monthlyReport1Grade = $row['monthlyReport1Grade'];
+            $monthlyReport2 = $row['monthlyReport2'];
+            $monthlyReport2Grade = $row['monthlyReport2Grade'];
+            $monthlyReport3 = $row['monthlyReport3'];
+            $monthlyReport3Grade = $row['monthlyReport3Grade'];
+            $evaluationReport = $row['evaluationReport'];
+            $evaluationReportGrade = $row['evaluationReportGrade'];
+            $finalGrade = $row['finalGrade'];
+            $internshipStatus = $row['internshipStatus'];
+
+        }
+
+        $con->close();
+    }
+    ?>
+
+    <div class="container">
+
+        <div class="row my-2 mx-auto">
+            <div style="width:600px;" class="border border-dark my-1 mx-auto col-md-4 col-lg-12">
+                <div class="justify-content-md-center">
+                    <hr style="color:black;" />
+                    <h2 class="text-black text-center">Student Details</h2>
+                    <hr style="color:black;" />
+
+                    <div class="m-2 row">
+                        <div class="col-2">
+                            <label><b>Name</b></label>
+                        </div>
+                        <div class="col-9">
+                            <label id="lblName">
+                                <?= $Name; ?>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="m-2 row">
+                        <div class="col-2">
+                            <label><b>ID</b></label>
+                        </div>
+                        <div class="col-4">
+                            <label id="lblID">
+                                <?= $ID; ?>
+                            </label>
+                        </div>
+                        <div class="col-2">
+                            <label><b>IC</b></label>
+                        </div>
+                        <div class="col-4">
+                            <label id="lblIC">
+                                <?= $IC; ?>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="m-2 row">
+                        <div class="col-2">
+                            <label><b>Gender</b></label>
+                        </div>
+                        <div class="col-4">
+                            <label id="lblGender">
+                                <?= $gender; ?>
+                            </label>
+                        </div>
+                        <div class="col-2">
+                            <label><b>Phone</b></label>
+                        </div>
+                        <div class="col-4">
+                            <label id="lblPhoneNo">
+                                <?= $phone; ?>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="m-2 row">
+                        <div class="col-2">
+                            <label><b>Email</b></label>
+                        </div>
+                        <div class="col-4 text-right">
+                            <label id="lblEmail">
+                                <?= $email; ?>
+                            </label>
+                        </div>
+                    </div>
+
+                    <hr style="color:black;" />
+                    <h2 class="text-black text-center">Internship Details</h2>
+                    <hr style="color:black;" />
+
+                    <div class="m-2 row">
+                        <div class="col-3">
+                            <label><b>Internship ID</b></label>
+                        </div>
+                        <div class="col-3">
+                            <label id=" lblInternshipID" data-internship-id="<?= $internshipID ?>">
+                                <?= $internshipID ?>
+                            </label>
+                        </div>
+                        <div class="col-3">
+                            <label><b>Session</b></label>
+                        </div>
+                        <div class="col-3">
+                            <label id=" lblSession">
+                                <?= $sessionID ?>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="m-2 row">
+                        <div class="col-3">
+                            <label><b>Qualification</b></label>
+                        </div>
+                        <div class="col-3 ">
+                            <label id="lblQualification">
+                                <?= $qualification ?>
+                            </label>
+                        </div>
+                        <div class="col-3">
+                            <label><b>Status</b></label>
+                        </div>
+                        <div class="col-3 ">
+                            <label id="lblInternshipStatus">
+                                <?= $internshipStatus ?>
+                            </label>
+                        </div>
+                    </div>
+
+
+                    <div class="m-2 row justify-content-center">
+                        <button class="border border-black w-50" id="btnTerminate" type="button"
+                            onclick="confirmMessage()">Terminate</button>
+                    </div>
+
+                </div>
+            </div>
+
+            <script type="text/javascript">
+                function updateStatus(column, updatedStatus) {
+                    var internshipID = "<?php echo $internshipID; ?>";
+
+                    $.ajax({
+                        type: "POST",
+                        url: "updateSumbtionStatus.php",
+                        data: {
+                            action: "updateDatabase",
+                            columnName: column,
+                            status: updatedStatus,
+                            id: internshipID
+                        }, success: function (response) {
+                            // Display the response from the server
+                            $("#result").html(response);
+                        }
+                    });
+                    location.reload();
+                }
+            </script>
+
+            <div style="width:600px;"
+                class="justify-content-md-center border border-dark my-1 mx-auto col-md-4 col-lg-12">
+                <hr style="color:black;" />
+                <h2 class="text-black text-center">Pre-Internship Submission</h2>
+                <hr style="color:black;" />
+
+                <div class="m-2 row">
+                    <div class="col-8">
+
+                        <?php
+
+                        if (str_contains($indemnity, ".pdf")) {
+                            echo '<label><b><a href="' . $indemnity . '" class="text-black" id="lblIndemnity" target="_blank">
+                           Indemnity </a></b> </label>';
+                        } else {
+                            echo '<label><b><a href="#lblIndemnity" class="text-black" id="lblIndemnity">
+                            Indemnity </a></b> </label>';
+                        }
+                        ?>
+
+                    </div>
+                    <div class="col-4 justify-content-end">
+                        <?php
+                        if ($indemnityStatus != "Pending") {
+                            echo '<label id="lblIndemnityStatus" class="w-100 m-2"> ' . $indemnityStatus . ' </label>';
+                        } else if ($indemnityStatus == "Missing") {
+                            echo '<label id="lblIndemnityStatus" class="w-100 m-2"> ----- </label>';
+                        } else {
+                            echo '<button id="btnAcceptIndemnity" type="button" onclick="updateStatus(\'indemnityStatus\', \'Accepted\')">Accept</button> ';
+                            echo '<button id="btnRejectIndemnity" type="button" onclick="updateStatus(\'indemnityStatus\', \'Rejected\')">Reject</button>';
+                        }
+                        ?>
+                    </div>
+                </div>
+
+                <div class="m-2 row">
+                    <div class="col-8">
+                        <?php
+                        if (str_contains($parentAcknowledgement, ".pdf")) {
+                            echo ' <label><b><a href="' . $parentAcknowledgement . '" class="text-black" id="lblAcknowledgement"
+                          target="_blank"> Parent
+                          Acknowledgement</a></b></label>';
+                        } else {
+                            echo ' <label><b><a href="#lblAcknowledgement" class="text-black" id="lblAcknowledgement> Parent Acknowledgement</a></b></label>';
+                        }
+                        ?>
+                    </div>
+                    <div class="col-4 justify-content-end">
+                        <?php
+                        if ($parentAcknowledgementStatus != "Pending") {
+                            echo '<label id="lblAcknowledgementStatus" class="w-100 m-2">
+                                ' . $parentAcknowledgementStatus . '</label>';
+                        } else if ($parentAcknowledgementStatus == "Missing") {
+                            echo '<label id="lblAcknowledgementStatus" class="w-100 m-2"> ----- </label>';
+                        } else {
+                            echo '<button id="btnAcceptAcknowledgement" type="button" onclick="updateStatus(\'parentAcknowledgementStatus\', \'Accepted\')">Accept</button> ';
+                            echo '<button id="btnRejectAcknowledgement" type="button" onclick="updateStatus(\'parentAcknowledgementStatus\', \'Rejected\')">Reject</button> ';
+                        }
+                        ?>
+                    </div>
+                </div>
+
+                <div class="m-2 row">
+                    <div class="col-8">
+                        <?php
+                        if (str_contains($companyAcceptance, ".pdf")) {
+                            echo '<label><b><a href="' . $companyAcceptance . '" class="text-black" id="lblCompanyAcceptance"
+                            target="_blank"> Company Acceptance </a></b></label>';
+                        } else {
+                            echo '<label><b><a href="#lblCompanyAcceptance" class="text-black" id="lblCompanyAcceptance"
+                            > Company Acceptance </a></b></label>';
+                        }
+                        ?>
+                    </div>
+                    <div class="col-4 justify-content-end">
+
+                        <?php
+                        if ($companyAcceptanceStatus != "Pending") {
+                            echo '<label id="lblAcceptance" class="m-2"> ' . $companyAcceptanceStatus . ' </label>';
+                        } else if ($companyAcceptanceStatus == "Missing") {
+                            echo '<label id="lblAcceptance" class="w-100 m-2"> ----- </label>';
+                        } else {
+                            echo '<button id="btnAcceptCompanyAcceptance" type="button" onclick="updateStatus(\'companyAcceptanceStatus\', \'Accepted\')">Accept </button> ';
+                            echo '<button id="btnRejectCompanyAcceptance" type="button" onclick="updateStatus(\'companyAcceptanceStatus\', \'Rejected\')">Reject </button>';
+                        }
+                        ?>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <div class="row my-2 mx-auto">
+            <div style="width:700px;"
+                class="justify-content-md-center border border-dark my-1 mx-auto col-sm-6 col-md-6 col-lg-12">
+                <hr style="color:black;" />
+                <h2 class="text-black text-center">Internship Report Submission</h2>
+                <hr style="color:black;" />
+
+                <div class="m-2 row">
+                    <div class="col-6">
+                        <label><b><a href="<?= $monthlyReport1 ?>" class="text-black" id="lblFirstMonthlyRport"
+                                    target="_blank"> First Monthly Report</a></b></label>
+                    </div>
+                    <div class="col-2">
+                        <label id="lblFirstMonthGrade" class="m-2">
+                            <?= $monthlyReport1Grade ?>
+                        </label>
+                    </div>
+                    <div class="col-4 justify-content-end">
+                        <button id="btnGradeFirst" type="button">Grade</button>
+                    </div>
+                </div>
+
+                <div class="m-2 row">
+                    <div class="col-6">
+                        <label><b><a href="<?= $monthlyReport2 ?>" class="text-black" id="lblSecondMonthlyRport"
+                                    target="_blank">Second Monthly Report</a></b></label>
+                    </div>
+                    <div class="col-2">
+                        <label id="lblSecondMonthGrade" class="m-2">
+                            <?= $monthlyReport2Grade ?>
+                        </label>
+                    </div>
+                    <div class="col-4 justify-content-end">
+                        <button id="btnGradeSecond" type="button">Grade</button>
+                    </div>
+                </div>
+
+                <div class="m-2 row">
+                    <div class="col-6">
+                        <label><b><a href="<?= $monthlyReport3 ?>" class="text-black" id="lblThirdMonthlyRport"
+                                    target="_blank">Third Monthly Report</a></b></label>
+                    </div>
+                    <div class="col-2">
+                        <label id="lblThirdMonthGrade" class="m-2">
+                            <?= $monthlyReport3Grade ?>
+                        </label>
+                    </div>
+                    <div class="col-4 justify-content-end">
+                        <button id="btnGradeThird" type="button">Grade</button>
+                    </div>
+                </div>
+
+                <div class="m-2 row">
+                    <div class="col-6">
+                        <label><b><a href="<?= $evaluationReport ?>" class="text-black" id="lblEvalMonthlyRport"
+                                    target="_blank">Evaluation Report</a></b></label>
+                    </div>
+                    <div class="col-2">
+                        <label id="lblEvaluationGrade" class="m-2">
+                            <?= $evaluationReportGrade ?>
+                        </label>
+                    </div>
+                    <div class="col-4 justify-content-end">
+                        <button id="btnGradeEvaluation" type="button">Grade</button>
+                    </div>
+                </div>
+
+                <div class="m-2 row">
+                    <div class="col-6">
+                        <label><b>Final Grade</b></label>
+                    </div>
+                    <div class="col-2">
+                        <label id="lblFinal" class="m-2">
+                            <?= $finalGrade ?>
+                        </label>
+                    </div>
+                    <div class="col-4 justify-content-end">
+
+                    </div>
+                </div>
+            </div>
+            <div style="width:1000px;" class="mx-auto col-md-8 col-lg-12">
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-light text-black pt-5 pb-4">
+        <div class="container text-center text-md-left">
+            <hr class="mb-4">
+            <div class="align-items-center">
+                <div class="col-md-12 col-lg-12 text-center">
+                    <p>Copyright © 2023 All Rights Reserved by:
+                        <strong>2023 - TAR UMT FOCS ITP</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
