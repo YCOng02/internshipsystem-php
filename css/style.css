@@ -121,6 +121,29 @@ d {
 
 
 
+.container {
+    width: 300px;
+    margin: 20px auto;
+}
+
+.list-item {
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+}
+
+.dropdown {
+    display: none;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+.submit-btn {
+    display: block;
+    margin-top: 10px;
+}
 
 
 
