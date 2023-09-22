@@ -28,7 +28,8 @@
                 <div class="collapse navbar-collapse master" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="supervisor">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="../Supervisor/SupervisorHome.php">Home <span
+                                    class="sr-only">(current)</span></a>
                         </li>
                     </ul>
                 </div>
@@ -77,12 +78,16 @@
                     throw new Exception("Connection failed: " . $con->connect_error);
                 } else {
                     //generate the record in the table
-                    $sql = "SELECT Stud.studID, Stud.studName, Stud.studEmail, Stud.studPhoneNo, Stud.studQualification, Ses.sessionID
-                        FROM Student Stud, Internship I, Session Ses
+                    $sql = "SELECT Stud.studID, Stud.studName, Stud.studEmail, Stud.studPhoneNo, Stud.studQualification, Ses.sessionID, Sta.staffID, Sta.staffName
+                        FROM Student Stud, Internship I, Session Ses, Supervisor Sup, Staff Sta
                         WHERE Stud.studID = I.studID
                         AND I.sessionID = Ses.sessionID
+                        AND Ses.sessionID = Sup.sessionID
+                        AND Sup.staffID = Sta.staffID
+                        AND (I.internshipStatus = 'In Progress' OR I.internshipStatus = 'Completed')
                         AND startMonthYear < '" . $currentDate . "'
-                        AND endMonthYear > '" . $currentDate . "'";
+                        AND endMonthYear > '" . $currentDate . "'
+                        ORDER BY Ses.sessionID";
 
                     $result = $con->query($sql);
 
