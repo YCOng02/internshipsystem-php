@@ -62,7 +62,7 @@
                     $studID = 2205950; // Replace with the actual student ID
 
                     // Create a connection
-                    $con = new mysqli('localhost', 'root', '', 'internship');
+                    require 'connect.php';
 
                     // Check for connection errors
                     if ($con->connect_error) {

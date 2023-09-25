@@ -52,14 +52,10 @@
             <div class="container">
                 
                 <?php
-                    // Connect to your database (similar to what you've done in previous code)
-                    $con = new mysqli('localhost', 'root', '', 'internship');
-
-                    // Check for connection errors
+                    require 'connect.php';
                     if ($con->connect_error) {
                         die("Connection failed: " . $con->connect_error);
                     }
-
                     // Define the studentID (you need to retrieve this based on the logged-in student)
                     $studID = 2205950; // Replace with the actual student ID
 

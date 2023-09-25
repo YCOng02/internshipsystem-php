@@ -4,7 +4,7 @@ if (isset($_POST['submit'])) {
     $formType = $_POST['form_type'];
 
     // Create a connection to your database
-    $con = new mysqli('localhost', 'root', '', 'internship');
+    require 'connect.php';
 
     // Check for connection errors
     if ($con->connect_error) {

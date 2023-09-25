@@ -67,7 +67,7 @@
                     $studID = 2205950; // Replace with the actual student ID
 
                     // Create a connection
-                    $con = new mysqli('internshipdatabase.cyaehofy25iu.us-east-1.rds.amazonaws.com', 'admin', 'internsh1pDBPassw0rd', 'InternshipDatabase');
+                    require 'connect.php';
 
                     // Check for connection errors
                     if ($con->connect_error) {

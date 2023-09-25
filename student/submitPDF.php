@@ -27,7 +27,7 @@ if (isset($_POST['submit'])) {
             // Now, insert the file path into the database and update the form status
 
             // Create a connection to your database
-            $con = new mysqli('localhost', 'root', '', 'internship');
+            require 'connect.php';
 
             // Check for connection errors
             if ($con->connect_error) {
