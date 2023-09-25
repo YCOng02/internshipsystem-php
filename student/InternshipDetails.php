@@ -53,9 +53,6 @@
                 
                 <?php
                     require 'connect.php';
-                    if ($con->connect_error) {
-                        die("Connection failed: " . $con->connect_error);
-                    }
                     // Define the studentID (you need to retrieve this based on the logged-in student)
                     $studID = 2205950; // Replace with the actual student ID
 
