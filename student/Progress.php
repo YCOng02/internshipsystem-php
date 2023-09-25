@@ -33,33 +33,21 @@
 
         <div class="container row justify-content-md-center mx-auto">
             <div class="nav nav-tabs border-0" id="nav-tab" role="tablist">
-                <button id="btnPre" class="nav-link col-4 text-black" style="border-color: #FFFBD6"
-                onclick="redirectToPreInternship()">
+                <a href="PreInternship.php" class="nav-link col-4 text-black text-center" style="border-color: #FFFBD6">
                     Pre-Internship Forms
-                </button>
-                <button id="btnProgress" class="nav-link active col-4 text-white border-0" style="background-color: #dc143c">
+                </a>
+                <a href="Progress.php" class="nav-link active col-4 text-white border-0 text-center" style="background-color: #dc143c">
                     Progress Report
-                </button>
-                <button id="btnDetails" class="nav-link col-4 text-black" style="border-color: #FFFBD6"
-                    onclick="redirectToDetails()">
+                </a>
+                <a href="InternshipDetails.php" class="nav-link col-4 text-black text-center" style="border-color: #FFFBD6">
                     Internship Details
-                </button>
+                </a>
             </div>
         </div>
 
-
-        <script type="text/javascript">
-            function redirectToPreInternship() {
-                // Redirect to the "Progress.php" page when the button is clicked
-                window.location.href = "PreInternship.php";
-            }
-
-            function redirectToDetails() {
-                // Redirect to the "InternshipDetails.php" page when the button is clicked
-                window.location.href = "InternshipDetails.php";
-            }
-        </script>
-
+        
+        </br>
+        </br>
         <div style="overflow-x: scroll;" class="container row justify-content-md-center mx-auto">
             <div class="container">
                 <table id="SubmissionGV" class="table w-100 my-1 table-bordered table-responsive table-hover">
@@ -207,7 +195,8 @@
                 </table>
             </div>
         </div>
-
+        </br>
+        </br>
 
 
 

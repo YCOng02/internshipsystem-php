@@ -33,39 +33,24 @@
 
         <div class="container row justify-content-md-center mx-auto">
             <div class="nav nav-tabs border-0" id="nav-tab" role="tablist">
-                <button id="btnPre" class="nav-link col-4 text-black" style="border-color: #FFFBD6"
-                onclick="redirectToPreInternship()">
+                <a href="PreInternship.php" class="nav-link col-4 text-black text-center" style="border-color: #FFFBD6">
                     Pre-Internship Forms
-                </button>
-                <button id="btnProgress" class="nav-link col-4 text-black" style="border-color: #FFFBD6"
-                    onclick="redirectToProgress()">
+                </a>
+                <a href="Progress.php" class="nav-link col-4 text-black text-center" style="border-color: #FFFBD6">
                     Progress Report
-                </button>
-                <button id="btnDetails" class="nav-link active col-4 text-white border-0" style="background-color: #dc143c">
+                </a>
+                <a href="InternshipDetails.php" class="nav-link active col-4 text-white border-0 text-center" style="background-color: #dc143c">
                     Internship Details
-                </button>
+                </a>
             </div>
         </div>
 
 
-        <script type="text/javascript">
-            function redirectToPreInternship() {
-                // Redirect to the "Progress.php" page when the button is clicked
-                window.location.href = "PreInternship.php";
-            }
-
-            function redirectToProgress() {
-                // Redirect to the "Progress.php" page when the button is clicked
-                window.location.href = "Progress.php";
-            }
-        </script>
-
-
         <div style="overflow-x: scroll;" class="container row justify-content-md-center mx-auto">
-            <div class="container">
+            
                 
             <div class="container">
-                <table id="SubmissionGV" class="table w-100 my-1 table-bordered table-responsive table-hover">
+                
                 <?php
                     // Connect to your database (similar to what you've done in previous code)
                     $con = new mysqli('localhost', 'root', '', 'internship');
@@ -97,22 +82,35 @@
 
                     $internshipResult = $con->query($internshipSql);
 
+                    
                     if ($internshipResult->num_rows > 0) {
-                        // Output the retrieved internship details
+                        echo '</br>';
+                        echo '</br>';
+                        echo '<div style="display: flex; justify-content: center;">';
+                        echo '<table style="width: 50%;" border="1">';
+                        echo '<tr style="background-color: lightgray; color: black; text-align: center; font-size: 25px; font-weight: bold;">';
+                        echo '<th style="width: 30%; "></th>';
+                        echo '<th style="width: 70%;text-align: left;">Internship Details</th>';
+                        echo '</tr>';
+                        
                         while ($row = $internshipResult->fetch_assoc()) {
-                            echo "<h1>Internship Details</h1>";
-                            echo "Internship ID: " . $row["internshipID"] . "<br>";
-                            echo "Student ID: " . $row["studID"] . "<br>";
-                            echo "Internship Status: " . $row["internshipStatus"] . "<br>";
-                            echo "Session ID: " . $row["sessionID"] . "<br>";
-                            echo "Start Month/Year: " . $row["startMonthYear"] . "<br>";
-                            echo "End Month/Year: " . $row["endMonthYear"] . "<br>";
-                            echo "Qualification: " . $row["qualification"] . "<br>";
-                            echo "Supervisor: " . $row["supervisorName"] . "<br>";
+                            echo "<tr><td>Internship ID:</td><td>" . $row["internshipID"] . "</td></tr>";
+                            echo "<tr><td>Student ID:</td><td>" . $row["studID"] . "</td></tr>";
+                            echo "<tr><td>Internship Status:</td><td>" . $row["internshipStatus"] . "</td></tr>";
+                            echo "<tr><td>Session ID:</td><td>" . $row["sessionID"] . "</td></tr>";
+                            echo "<tr><td>Start Month/Year:</td><td>" . $row["startMonthYear"] . "</td></tr>";
+                            echo "<tr><td>End Month/Year:</td><td>" . $row["endMonthYear"] . "</td></tr>";
+                            echo "<tr><td>Qualification:</td><td>" . $row["qualification"] . "</td></tr>";
+                            echo "<tr><td>Supervisor:</td><td>" . $row["supervisorName"] . "</td></tr>";
                         }
+                    
+                        echo '</table>';
+                        echo '</div>'; // Close the centered div
                     } else {
                         echo "No internship details found for this student.";
                     }
+
+
 
                     // SQL query to retrieve report names and grades from the internship table
                     $reportSql = "SELECT * FROM internship WHERE studID = $studID";
@@ -122,12 +120,16 @@
                     if ($reportResult->num_rows > 0) {
                         
                         // Output the retrieved report names and grades in a separate table
-                        echo "<h1>Report Grades</h1>";
-                        echo '<table class="report-table" border="1">
-                                <tr>
-                                    <th>Report Name</th>
-                                    <th>Grade</th>
-                                </tr>';
+
+                        echo '</br>';
+                        echo '</br>';
+                        echo '<div style="display: flex; justify-content: center;">';
+                        echo '<table style="width: 40%;" border="1">';
+                        echo '<tr style="background-color: lightgray; color: black; text-align: center; font-size: 25px; font-weight: bold;">';
+                        echo '<th style="width: 70%; text-align: center;">Report</th>';
+                        echo '<th style="width: 30%; text-align: left;">Grades</th>';
+                        echo '</tr>';
+                        
                     
                         $reportFields = array(
                             'monthlyReport1' => 'Monthly Report 1',
@@ -162,14 +164,14 @@
 
                     // Close the database connection
                     $con->close();
-                    ?>
-
-                </table>
-                
-
-         
+                    ?>    
             </div>
         </div>
+
+        </br>
+        </br>
+
+
 
         <footer class="bg-light text-black pt-5 pb-4">
             <div class="container text-center text-md-left">
@@ -184,17 +186,6 @@
             </div>
         </footer>
     </form>
-
-    <!-- Include jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <!-- Your custom JavaScript -->
-    <script>
-        $(document).ready(function () {
-            $('.list-item').click(function () {
-                $(this).find('.dropdown').toggle();
-            });
-        });
-    </script>
+    
 </body>
 </html>
