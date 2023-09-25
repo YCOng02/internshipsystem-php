@@ -147,4 +147,19 @@ d {
 
 
 
+.report-table {
+    width: 50%; /* Set table width to half of the page */
+    border-collapse: collapse; /* Collapse borders */
+}
+
+.report-table th, .report-table td {
+    border: 1px solid #000; /* Add borders to table cells */
+    padding: 8px; /* Add padding for better spacing */
+    text-align: center; /* Center-align text in cells */
+}
+
+
+
+
+
 
