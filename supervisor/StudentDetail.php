@@ -18,16 +18,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
         crossorigin="anonymous"></script>
-    <script type="text/javascript">
-        function confirmMessage() {
-            if (confirm("Are you sure you want to delete this item?")) {
-                window.location.href = "SupervisorHome.php";
-                return true;
-            } else {
-                return false;
-            }
-        }
-    </script>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
@@ -38,7 +28,8 @@
                 <div class="collapse navbar-collapse master" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="supervisor">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="../Supervisor/SupervisorHome.php">Home <span
+                                    class="sr-only">(current)</span></a>
                         </li>
                     </ul>
                 </div>
@@ -177,7 +168,7 @@
 
                     <div class="m-2 row">
                         <div class="col-3">
-                            <label><b>Internship ID</b></label>
+                            <label><b>Internship</b></label>
                         </div>
                         <div class="col-3">
                             <label id=" lblInternshipID" data-internship-id="<?= $internshipID ?>">
@@ -215,33 +206,16 @@
 
 
                     <div class="m-2 row justify-content-center">
-                        <button class="border border-black w-50" id="btnTerminate" type="button"
-                            onclick="confirmMessage()">Terminate</button>
-                    </div>
 
+                        <?php
+                        if ($internshipStatus == "In Progress") {
+                            echo ' <button class="border border-black w-50" id="btnTerminate" type="button"
+                            onclick="Terminate()">Terminate</button>';
+                        }
+                        ?>
+                    </div>
                 </div>
             </div>
-
-            <script type="text/javascript">
-                function updateStatus(column, updatedStatus) {
-                    var internshipID = "<?php echo $internshipID; ?>";
-
-                    $.ajax({
-                        type: "POST",
-                        url: "updateSumbtionStatus.php",
-                        data: {
-                            action: "updateDatabase",
-                            columnName: column,
-                            status: updatedStatus,
-                            id: internshipID
-                        }, success: function (response) {
-                            // Display the response from the server
-                            $("#result").html(response);
-                        }
-                    });
-                    location.reload();
-                }
-            </script>
 
             <div style="width:600px;"
                 class="justify-content-md-center border border-dark my-1 mx-auto col-md-4 col-lg-12">
@@ -335,8 +309,6 @@
             </div>
         </div>
 
-
-
         <div class="row my-2 mx-auto">
             <div style="width:700px;"
                 class="justify-content-md-center border border-dark my-1 mx-auto col-sm-6 col-md-6 col-lg-12">
@@ -346,61 +318,97 @@
 
                 <div class="m-2 row">
                     <div class="col-6">
-                        <label><b><a href="<?= $monthlyReport1 ?>" class="text-black" id="lblFirstMonthlyRport"
-                                    target="_blank"> First Monthly Report</a></b></label>
+                        <?php
+                        if (str_contains($monthlyReport1, ".pdf")) {
+                            echo ' <label><b><a href="' . $monthlyReport1 . '" class="text-black" id="lblFirstMonthlyRport"
+                            target="_blank"> First Monthly Report</a></b></label>';
+                        } else {
+                            echo ' <label><b><a href="#lblFirstMonthlyRport" class="text-black" id="lblFirstMonthlyRport"
+                            > First Monthly Report</a></b></label>';
+                        }
+                        ?>
                     </div>
-                    <div class="col-2">
-                        <label id="lblFirstMonthGrade" class="m-2">
-                            <?= $monthlyReport1Grade ?>
-                        </label>
-                    </div>
-                    <div class="col-4 justify-content-end">
-                        <button id="btnGradeFirst" type="button">Grade</button>
-                    </div>
-                </div>
-
-                <div class="m-2 row">
-                    <div class="col-6">
-                        <label><b><a href="<?= $monthlyReport2 ?>" class="text-black" id="lblSecondMonthlyRport"
-                                    target="_blank">Second Monthly Report</a></b></label>
-                    </div>
-                    <div class="col-2">
-                        <label id="lblSecondMonthGrade" class="m-2">
-                            <?= $monthlyReport2Grade ?>
-                        </label>
-                    </div>
-                    <div class="col-4 justify-content-end">
-                        <button id="btnGradeSecond" type="button">Grade</button>
+                    <div class="col-6 justify-content-center">
+                        <?php
+                        if ($monthlyReport1Grade == null) {
+                            echo '<input  id="enterMonthlyReport1Grade" type="number"  style="-webkit-appearance: none; max="100" min="0" class="w-25"> /100 &nbsp;&nbsp;&nbsp;';
+                            echo '<button id="btnGradeFirst" type="button" onclick="Graded(\'monthlyReport1Grade\')" >Grade</button>';
+                        } else
+                            echo '<label id="lblFirstMonthGrade" class="w-100 mx-auto ">
+                             ' . $monthlyReport1Grade . ' / 100 </label>';
+                        ?>
                     </div>
                 </div>
 
                 <div class="m-2 row">
                     <div class="col-6">
-                        <label><b><a href="<?= $monthlyReport3 ?>" class="text-black" id="lblThirdMonthlyRport"
-                                    target="_blank">Third Monthly Report</a></b></label>
+                        <?php
+                        if (str_contains($monthlyReport2, ".pdf")) {
+                            echo ' <label><b><a href="' . $monthlyReport2 . '" class="text-black" id="lblSecondMonthlyRport"
+                            target="_blank"> Second Monthly Report</a></b></label>';
+                        } else {
+                            echo ' <label><b><a href="#lblSecondMonthlyRport" class="text-black" id="lblSecondMonthlyRport"
+                            > Second Monthly Report</a></b></label>';
+                        }
+                        ?>
                     </div>
-                    <div class="col-2">
-                        <label id="lblThirdMonthGrade" class="m-2">
-                            <?= $monthlyReport3Grade ?>
-                        </label>
-                    </div>
-                    <div class="col-4 justify-content-end">
-                        <button id="btnGradeThird" type="button">Grade</button>
+                    <div class="col-6 justify-content-center">
+                        <?php
+                        if ($monthlyReport2Grade == null) {
+                            echo '<input id="enterMonthlyReport2Grade" type="number" max="100" min="0" class="w-25">/100 &nbsp;&nbsp;&nbsp;';
+                            echo '<button id="btnGradeSecond" type="button" onclick="Graded(\'monthlyReport2Grade\')">Grade</button>';
+                        } else
+                            echo '<label id="lblSecondMonthGrade" class="w-100 mx-auto ">
+                             ' . $monthlyReport2Grade . ' / 100 </label>';
+                        ?>
                     </div>
                 </div>
 
                 <div class="m-2 row">
                     <div class="col-6">
-                        <label><b><a href="<?= $evaluationReport ?>" class="text-black" id="lblEvalMonthlyRport"
-                                    target="_blank">Evaluation Report</a></b></label>
+                        <?php
+                        if (str_contains($monthlyReport3, ".pdf")) {
+                            echo ' <label><b><a href=' . $monthlyReport3 . '" class="text-black" id="lblThridMonthlyRport"
+                            target="_blank"> Thrid Monthly Report</a></b></label>';
+                        } else {
+                            echo ' <label><b><a href="#lblThridMonthlyRport" class="text-black" id="lblThridMonthlyRport"
+                            > Thrid Monthly Report</a></b></label>';
+                        }
+                        ?>
                     </div>
-                    <div class="col-2">
-                        <label id="lblEvaluationGrade" class="m-2">
-                            <?= $evaluationReportGrade ?>
-                        </label>
+                    <div class="col-6 justify-content-center">
+                        <?php
+                        if ($monthlyReport3Grade == null) {
+                            echo '<input  id="enterMonthlyReport3Grade" type="number" max="100" min="0" class="w-25">/100 &nbsp;&nbsp;&nbsp;';
+                            echo '<button id="btnGradeThrid" type="button" onclick="Graded(\'monthlyReport3Grade\')">Grade</button>';
+                        } else
+                            echo '<label id="lblThridMonthGrade" class="w-100 mx-auto ">
+                             ' . $monthlyReport3Grade . ' / 100 </label>';
+                        ?>
                     </div>
-                    <div class="col-4 justify-content-end">
-                        <button id="btnGradeEvaluation" type="button">Grade</button>
+                </div>
+
+                <div class="m-2 row">
+                    <div class="col-6">
+                        <?php
+                        if (str_contains($evaluationReport, ".pdf")) {
+                            echo ' <label><b><a href="' . $evaluationReport . '" class="text-black" id="lblEvalMonthlyRport"
+                            target="_blank"> Evaluation Report</a></b></label>';
+                        } else {
+                            echo ' <label><b><a href="#lblEvalMonthlyRport" class="text-black" id="lblEvalMonthlyRport"
+                            >  Evaluation Report</a></b></label>';
+                        }
+                        ?>
+                    </div>
+                    <div class="col-6 justify-content-center">
+                        <?php
+                        if ($evaluationReportGrade == null) {
+                            echo '<input  id="enterEvaluationReportGrade" type="number" max="100" min="0" class="w-25">/100 &nbsp;&nbsp;&nbsp;';
+                            echo '<button id="btnGradeEvaluation" type="button" onclick="Graded(\'evaluationReportGrade\')">Grade</button>';
+                        } else
+                            echo '<label id="lblEvaluationGrade" class="w-100 mx-auto ">
+                             ' . $evaluationReportGrade . ' / 100 </label>';
+                        ?>
                     </div>
                 </div>
 
@@ -408,13 +416,10 @@
                     <div class="col-6">
                         <label><b>Final Grade</b></label>
                     </div>
-                    <div class="col-2">
-                        <label id="lblFinal" class="m-2">
-                            <?= $finalGrade ?>
+                    <div class="col-6">
+                        <label id="lblFinal">
+                            <?= $finalGrade ?> / 100
                         </label>
-                    </div>
-                    <div class="col-4 justify-content-end">
-
                     </div>
                 </div>
             </div>
@@ -422,7 +427,111 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        function updateStatus(column, updatedStatus) {
+            var internshipID = "<?php echo $internshipID; ?>";
 
+            $.ajax({
+                type: "POST",
+                url: "updateStudentInternshipDetail.php",
+                data: {
+                    action: "updateDatabase",
+                    columnName: column,
+                    status: updatedStatus,
+                    id: internshipID
+                }, success: function (response) {
+                    // Display the response from the server
+                    $("#result").html(response);
+                }
+            });
+            location.reload();
+        }
+
+        function Terminate() {
+            var internshipID = "<?php echo $internshipID; ?>";
+
+            if (confirm("Are you sure you want to terminate this student?")) {
+                $.ajax({
+                    type: "POST",
+                    url: "updateStudentInternshipDetail.php",
+                    data: {
+                        action: "terminate",
+                        id: internshipID
+                    }, success: function (response) {
+                        // Display the response from the server
+                        $("#result").html(response);
+                    }
+                });
+                window.location.href = "SupervisorHome.php";
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function calFinalMark(firstReport, secondReport, thirdReport, evalReport) {
+            if (firstReport != null && secondReport != null && thirdReport != null && evalReport != null)
+                return parseInt(firstReport) * 0.2 + parseInt(secondReport) * 0.2 + parseInt(thirdReport) * 0.2 + parseInt(evalReport) * 0.4;
+            else
+                return null;
+        }
+
+        function Graded(column) {
+
+            var response = "function call";
+            $("#result").html(response);
+            var internshipID = "<?php echo $internshipID; ?>";
+            var firstReport = "<?php echo $monthlyReport1Grade ?>";
+            var secondReport = "<?php echo $monthlyReport2Grade ?>";
+            var thirdReport = "<?php echo $monthlyReport3Grade ?>";
+            var evalReport = "<?php echo $evaluationReportGrade ?>";
+            var final = null;
+            var marks;
+
+            switch (column) {
+                case "monthlyReport1Grade":
+                    marks = document.getElementById("enterMonthlyReport1Grade").value;
+                    final = calFinalMark(marks, secondReport, thirdReport, evalReport);
+                    break;
+                case "monthlyReport2Grade":
+                    marks = document.getElementById("enterMonthlyReport2Grade").value;
+                    final = calFinalMark(firstReport, marks, thirdReport, evalReport);
+                    break;
+                case "monthlyReport3Grade":
+                    marks = document.getElementById("enterMonthlyReport3Grade").value;
+                    final = calFinalMark(firstReport, secondReport, marks, evalReport);
+                    break;
+                case "evaluationReportGrade":
+                    marks = document.getElementById("enterEvaluationReportGrade").value;
+                    final = calFinalMark(firstReport, secondReport, thirdReport, marks);
+                    break;
+                default:
+                    final = null;
+                    break;
+            }
+
+            if (marks <= 100 && marks >= 0) {
+                if (confirm("The Marks for" + column + " will be set as " + parseInt(marks) + ". \n are you sure?")) {
+                    $.ajax({
+                        type: "POST",
+                        url: "updateStudentInternshipDetail.php",
+                        data: {
+                            action: "Graded",
+                            columnName: column,
+                            reportMark: marks,
+                            finalMark: final,
+                            id: internshipID
+                        }, success: function (response) {
+                            // Display the response from the server
+                            $("#result").html(response);
+                        }
+                    });
+                    location.reload();
+                }
+            }
+        }
+    </script>
+    <div id="result">s</div>
     <footer class="bg-light text-black pt-5 pb-4">
         <div class="container text-center text-md-left">
             <hr class="mb-4">

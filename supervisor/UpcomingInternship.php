@@ -40,17 +40,17 @@
 
     <div class="container row justify-content-md-center mx-auto">
         <div class="nav nav-tabs border-0" id="nav-tab" role="tablist">
-            <button id="btnCurrent" class="nav-link active w-50 text-white border-0"
-                style="background-color: #dc143c">Current</button>
-            <button id="btnUpcoming" class="nav-link w-50 text-black" style="border-color: #FFFBD6"
-                onclick="redirectToUpcoming()">Upcoming</button>
+            <button id="btnCurrent" class="nav-link  w-50 text-black" style="border-color: #FFFBD6"
+                onclick="redirectToCurrent()">Current</button>
+            <button id="btnUpcoming" class="nav-link active w-50 text-white border-0 "
+                style="background-color: #dc143c">Upcoming</button>
         </div>
     </div>
 
     <script type="text/javascript">
-        function redirectToUpcoming() {
+        function redirectToCurrent() {
             // Redirect to the "Upcoming.php" page when the button is clicked
-            window.location.href = "UpcomingInternship.php";
+            window.location.href = "SupervisorHome.php";
         }
     </script>
 
@@ -85,8 +85,7 @@
                         AND Ses.sessionID = Sup.sessionID
                         AND Sup.staffID = Sta.staffID
                         AND (I.internshipStatus = 'In Progress' OR I.internshipStatus = 'Completed')
-                        AND startMonthYear < '" . $currentDate . "'
-                        AND endMonthYear > '" . $currentDate . "'
+                        AND startMonthYear > '" . $currentDate . "'
                         ORDER BY Ses.sessionID";
 
                     $result = $con->query($sql);
