@@ -7,8 +7,8 @@ if (isset($_POST['action']) && $_POST['action'] == "updateDatabase") {
     $status = $_POST['status'];
     $id = $_POST['id'];
 
-    $con = new mysqli('localhost', 'root', '', 'internship');
-
+    require '../student/connect.php';
+    
     // Check for connection errors
     if ($con->connect_error) {
         die("Connection failed: " . $con->connect_error);

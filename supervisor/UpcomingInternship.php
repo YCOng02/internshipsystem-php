@@ -71,7 +71,7 @@
                 $currentDate = date('Y-m-d'); // Format: YYYY-MM-DD
                 
                 // Create a connection
-                $con = new mysqli('localhost', 'root', '', 'internship');
+                require '../student/connect.php';
 
                 // Check for connection errors
                 if ($con->connect_error) {
