@@ -40,18 +40,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Password is correct, set session variables with student details
             session_start();
             $_SESSION["studID"] = $studID;
-            
+            $_SESSION["login_status"] = "successful";
 
             // Redirect to Profile.php
-            header("Location: Profile.php");
+            header("Location: ../student/Profile.php");
             
         } else {
             // Authentication failed, display an error message or redirect to a login page with an error message
             echo "Login failed. Invalid email or password.";
+            $_SESSION["login_status"] = "failed.  invlid email or password.";
+            header("Location: UserLogin.php");
         }
     } else {
         // Email not found in the database, display an error message
         echo "Login failed. Email not found.";
+        $_SESSION["login_status"] = "failed.  invlid email or password.";
+        header("Location: UserLogin.php");
     }
 
     // Close the database connection

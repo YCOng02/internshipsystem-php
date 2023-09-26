@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Check if the session variables are set before accessing them
+if (isset($_SESSION['login_status'])) {
+    $login_status = $_SESSION['login_status'];
+} else {
+    // Handle the case where the session data is not set
+    $login_status = "anonymous";
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,6 +49,11 @@
                 <div class="container-fluid">
                     <div class="row mt-2 justify-content-center">
                         <i class="fa-solid fa-user" style="width: 10%; margin-top: 30px"></i>
+
+                        <?php if ($login_status != "successful"): ?>
+                            <div class="text-danger"><?php echo "Wrong input"; ?></div>
+                        <?php endif; ?>
+
                         
                         <div class="form-floating mb-3" style="width: 60%;" id="float">
                             <input type="email" name="txtEmail" class="form-control userInput" placeholder=" " required>
@@ -55,8 +71,8 @@
                     </div>
                     <div class="text-center">
                         <?php
-                        if (isset($loginError) && !empty($loginError)) {
-                            echo '<div class="text-danger">' . $loginError . '</div>';
+                        if ( $login_status != "successful") {
+                            echo 'Wrong';
                         }
                         ?>
                     </div>
