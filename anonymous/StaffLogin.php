@@ -21,8 +21,6 @@
                 <div class="collapse navbar-collapse master" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <!-- <a class="nav-link" href="../Supervisor/SupervisorHome.php">Home <span
-                                    class="sr-only">(current)</span></a> -->
                         </li>
                     </ul>
                 </div>
@@ -32,9 +30,9 @@
 
     <div id="content" class="text-dark d-flex align-items-center justify-content-center loginPage">
         <div class="loginWindow bg-white rounded col-md-5 col-lg-6 col-sm-6">
-            <div class="nav-link active flex-grow-1 loginTab p-3 text-center">User Login</div>
+            <div class="nav-link active flex-grow-1 loginTab p-3 text-center">Staff Login</div>
 
-            <form method="post" action="loginUser.php">
+            <form method="post" action="loginStaff.php">
                 <div class="container-fluid">
                     <div class="row mt-2 justify-content-center">
                         <i class="fa-solid fa-user" style="width: 10%; margin-top: 30px"></i>
