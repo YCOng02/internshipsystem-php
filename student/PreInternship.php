@@ -53,7 +53,7 @@
         </br>
         </br>
         <div style="overflow-x: scroll;" class="container row justify-content-md-center mx-auto">
-            <div class="container">
+            <div class="container" style="height:55vh;">
                 <table id="SubmissionGV" class="table w-100 my-1 table-bordered table-responsive table-hover">
                     <tr style="background-color: lightgrey;">
                         <th>Form Type</th>

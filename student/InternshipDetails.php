@@ -46,8 +46,8 @@
         </div>
 
         
-        <div style="overflow-x: scroll;" class="container row justify-content-md-center mx-auto">   
-            <div class="container ">
+        <div style="overflow-x: scroll; height:60vh;" class="container row justify-content-md-center mx-auto">   
+            <div class="container">
             
                 <?php
                     require 'connect.php';

@@ -13,7 +13,7 @@
 </head>
 <body style="min-height:100vh;" class="bg-bright">
 
-<div class="main">
+<div class="main" style="height:100%;">
 
     <form id="form1" style="min-height:100vh;" runat="server">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -25,6 +25,7 @@
                     <div class="collapse navbar-collapse master" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
+                                <a class="nav-link" href="supervisor">Home <span class="sr-only">(current)</span></a>
                                 <a class="nav-link" href="supervisor">Home <span class="sr-only">(current)</span></a>
                             </li>
                         </ul>
@@ -51,7 +52,7 @@
         </br>
         </br>
         <div style="overflow-x: scroll;" class="container row justify-content-md-center mx-auto">
-            <div class="container">
+            <div class="container" style="height:55vh;">
                 <table id="SubmissionGV" class="table w-100 my-1 table-bordered table-responsive table-hover">
                     <tr style="background-color: lightgrey;">
                         <th>Report Type</th>
