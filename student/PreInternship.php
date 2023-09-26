@@ -12,9 +12,9 @@
         integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
 </head>
 
-<body class="bg-bright">
+<body style="min-height:100vh;" class="bg-bright">
 
-    <form id="form1" runat="server">
+    <form style="min-height:100vh;" id="form1" runat="server">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
                 <a class="navbar-brand" href="#">
@@ -122,7 +122,7 @@
                                 echo '<td>' . $dueDate . '</td>';
                                 echo '<td>';
 
-                                if ($row['indemnity'] !== '' && ($row['indemnityStatus'] === 'Pending' || $row['indemnityStatus'] === 'Submitted')) {
+                                if ($row['indemnity'] !== '' && ($row['indemnityStatus'] === 'Pending' || $row['indemnityStatus'] === 'Accepted'|| $row['indemnityStatus'] === 'Rejected')) {
                                     // Display link to view the submitted file
                                     echo '<label><b><a href="' . $row['indemnity'] . '" class="text-black" target="_blank">View File</a></b></label>';
                                     echo '<br>';
@@ -174,7 +174,7 @@
                                 echo '<td>' . $dueDate . '</td>';
                                 echo '<td>';
 
-                                if ($row['parentAcknowledgement'] !== '' && ($row['parentAcknowledgementStatus'] === 'Pending' || $row['parentAcknowledgementStatus'] === 'Submitted')) {
+                                if ($row['parentAcknowledgement'] !== '' && ($row['parentAcknowledgementStatus'] === 'Pending' || $row['parentAcknowledgementStatus'] === 'Accepted'|| $row['parentAcknowledgementStatus'] === 'Rejected')) {
                                     // Display link to view the submitted file
                                     echo '<label><b><a href="' . $row['parentAcknowledgement'] . '" class="text-black" target="_blank">View File</a></b></label>';
                                     echo '<br>';
@@ -211,7 +211,7 @@
                                 echo '<td>' . $dueDate . '</td>';
                                 echo '<td>';
 
-                                if ($row['companyAcceptance'] !== '' && ($row['companyAcceptanceStatus'] === 'Pending')) {
+                                if ($row['companyAcceptance'] !== '' && ($row['companyAcceptanceStatus'] === 'Pending'|| $row['companyAcceptanceStatus'] === 'Accepted'|| $row['companyAcceptanceStatus'] === 'Rejected')) {
                                     // Display link to view the submitted file
                                     echo '<label><b><a href="' . $row['companyAcceptance'] . '" class="text-black" target="_blank">View File</a></b></label>';
                                     echo '<br>';
@@ -258,8 +258,6 @@
         </br>
         </br>
 
-
-
         <footer class="bg-light text-black pt-5 pb-4">
             <div class="container text-center text-md-left">
                 <hr class="mb-4">
@@ -272,6 +270,7 @@
                 </div>
             </div>
         </footer>
+
     </form>
     
 </body>

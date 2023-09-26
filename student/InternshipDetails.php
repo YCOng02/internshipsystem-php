@@ -11,9 +11,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
 </head>
-<body style="min-height:100vh" class="bg-bright">
+<body style="min-height:100vh;" class="bg-bright">
 
-    <form id="form1" runat="server">
+    <form id="form1" style="min-height:100vh;" runat="server">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
                 <a class="navbar-brand" href="#">
@@ -45,12 +45,10 @@
             </div>
         </div>
 
-
-        <div style="overflow-x: scroll;" class="container row justify-content-md-center mx-auto">
+        
+        <div style="overflow-x: scroll;" class="container row justify-content-md-center mx-auto">   
+            <div class="container ">
             
-                
-            <div class="container">
-                
                 <?php
                     require 'connect.php';
                     // Define the studentID (you need to retrieve this based on the logged-in student)
@@ -167,11 +165,10 @@
                     ?>    
             </div>
         </div>
+        </div>
 
         </br>
         </br>
-
-
 
         <footer class="bg-light text-black pt-5 pb-4">
             <div class="container text-center text-md-left">
@@ -186,6 +183,8 @@
             </div>
         </footer>
     </form>
+
+    
     
 </body>
 </html>

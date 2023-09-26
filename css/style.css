@@ -8,15 +8,26 @@ body {
     vertical-align: middle;
     overflow: auto;
     height: 100%;
+    margin: 0;
+    padding: 0;
 }
+
 
 #content {
     width: 80%;
-    margin: 0 auto;
+    margin: auto;
     height: 100%;
     overflow: auto;
     background-color: white;
 }
+
+
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
 
 
 .master .navbar-nav a {
@@ -119,31 +130,6 @@ d {
     display: none;
 }
 
-
-
-.container {
-    width: 300px;
-    margin: 20px auto;
-}
-
-.list-item {
-    cursor: pointer;
-    padding: 10px;
-    border: 1px solid #ccc;
-    margin-bottom: 5px;
-}
-
-.dropdown {
-    display: none;
-    padding: 10px;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
-}
-
-.submit-btn {
-    display: block;
-    margin-top: 10px;
-}
 
 
 

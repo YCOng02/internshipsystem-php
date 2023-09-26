@@ -11,9 +11,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
 </head>
-<body style="min-height:100vh" class="bg-bright">
+<body style="min-height:100vh;" class="bg-bright">
 
-    <form id="form1" runat="server">
+<div class="main">
+
+    <form id="form1" style="min-height:100vh;" runat="server">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
                 <a class="navbar-brand" href="#">
@@ -260,13 +262,6 @@
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <!-- Your custom JavaScript -->
-    <script>
-        $(document).ready(function () {
-            $('.list-item').click(function () {
-                $(this).find('.dropdown').toggle();
-            });
-        });
-    </script>
+    </div>
 </body>
 </html>
