@@ -20,30 +20,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $hashedPassword = substr(hash('sha256', $password), 0, 50);
 
     // Query the database to retrieve the stored hashed password and student details for the given email
-    $query = "SELECT studID, studName, studEmail, studPassword FROM student WHERE studEmail = '$email'";
+    $query = "SELECT staffID, staffName, staffEmail, staffIC, staffGender, staffPhoneNo, staffPassword FROM staff WHERE staffEmail = '$email'";
     $result = $con->query($query);
 
     if ($result->num_rows > 0) {
         // Fetch the stored hashed password and student details from the database
         $row = $result->fetch_assoc();
-        $storedHashedPassword = $row["studPassword"];
-        $studID = $row["studID"];
-        $studName = $row["studName"];
-        $studEmail = $row["studEmail"];
-        $studIC = $row["studIC"];
-        $studGender = $row["studGender"];
-        $studPhoneNo = $row["studPhoneNo"];
-        $studQualification = $row["studQualification"];
+        $storedHashedPassword = $row["staffPassword"];
+        $staffID = $row["staffID"];
 
         // Compare the hashed input password with the stored hashed password
         if ($hashedPassword === $storedHashedPassword) {
             // Password is correct, set session variables with student details
             session_start();
-            $_SESSION["studID"] = $studID;
+            $_SESSION["staffID"] = $staffID;
             
-
             // Redirect to Profile.php
-            header("Location: Profile.php");
+            header("Location: ../supervisor/StaffProfile.php");
             
         } else {
             // Authentication failed, display an error message or redirect to a login page with an error message

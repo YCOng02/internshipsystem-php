@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+// Check if the session variables are set before accessing them
+if (isset($_SESSION['staffID'])) {
+    $staffID = $_SESSION['stafffID'];
+} else {
+    // Handle the case where the session data is not set
+    $staffID = "empty session";
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -85,7 +97,9 @@
                         AND Sup.staffID = Sta.staffID
                         AND (I.internshipStatus = 'In Progress' OR I.internshipStatus = 'Completed')
                         AND startMonthYear < '" . $currentDate . "'
-                        // AND Sta.staffID = 
+
+
+
                         AND endMonthYear > '" . $currentDate . "'
                         ORDER BY Ses.sessionID";
 
