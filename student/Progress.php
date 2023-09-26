@@ -53,6 +53,7 @@
                 <table id="SubmissionGV" class="table w-100 my-1 table-bordered table-responsive table-hover">
                     <tr style="background-color: lightgrey;">
                         <th>Report Type</th>
+                        <th>Start Date</th>
                         <th>Due Date</th>
                         <th>Submit Report</th>
                     </tr>
@@ -79,6 +80,7 @@
                                 $sessionResult = $con->query($sessionSql);
                                 $startMonthYear = null;
                                 $endMonthYear = null;
+                                $startDate = "";
                                 $dueDate = "";
 
                                 // Define the report fields
@@ -93,28 +95,49 @@
                                     $sessionRow = $sessionResult->fetch_assoc();
                                     $startMonthYear = new DateTime($sessionRow['startMonthYear']);
                                     $endMonthYear = new DateTime($sessionRow['endMonthYear']);
-
+                                
                                     // Calculate the due date for Monthly Report 1 (1 month after startMonthYear)
                                     $dueDateMonthlyReport1 = clone $startMonthYear;
                                     $dueDateMonthlyReport1->modify('+1 month');
                                     $dueDateMonthlyReport1Str = $dueDateMonthlyReport1->format('Y-m-d');
-
+                                
+                                    // Calculate the start date for Monthly Report 1
+                                    $startDateMonthlyReport1 = clone $startMonthYear;
+                                    $startDateMonthlyReport1Str = $startDateMonthlyReport1->format('Y-m-d');
+                                
                                     // Calculate the due date for Monthly Report 2 (2 months after startMonthYear)
                                     $dueDateMonthlyReport2 = clone $startMonthYear;
                                     $dueDateMonthlyReport2->modify('+2 months');
                                     $dueDateMonthlyReport2Str = $dueDateMonthlyReport2->format('Y-m-d');
-
+                                
+                                    // Calculate the start date for Monthly Report 2
+                                    $startDateMonthlyReport2 = clone $dueDateMonthlyReport1;
+                                    $startDateMonthlyReport2->modify('+1 day'); // 1 day after the due date of Monthly Report 1
+                                    $startDateMonthlyReport2Str = $startDateMonthlyReport2->format('Y-m-d');
+                                
                                     // Calculate the due date for Monthly Report 3 (3 months after startMonthYear)
                                     $dueDateMonthlyReport3 = clone $startMonthYear;
                                     $dueDateMonthlyReport3->modify('+3 months');
                                     $dueDateMonthlyReport3Str = $dueDateMonthlyReport3->format('Y-m-d');
-
+                                
+                                    // Calculate the start date for Monthly Report 3
+                                    $startDateMonthlyReport3 = clone $dueDateMonthlyReport2;
+                                    $startDateMonthlyReport3->modify('+1 day'); // 1 day after the due date of Monthly Report 2
+                                    $startDateMonthlyReport3Str = $startDateMonthlyReport3->format('Y-m-d');
+                                
                                     // Calculate the due date for Evaluation Report (last week before endMonthYear)
                                     $dueDateEvaluationReport = clone $endMonthYear;
                                     $dueDateEvaluationReport->modify('-1 week');
                                     $dueDateEvaluationReportStr = $dueDateEvaluationReport->format('Y-m-d');
+                                
+                                    // Calculate the start date for Evaluation Report
+                                    $startDateEvaluationReport = clone $endMonthYear;
+                                    $startDateEvaluationReport->modify('-1 week'); // 1 week before endMonthYear
+                                    $startDateEvaluationReportStr = $startDateEvaluationReport->format('Y-m-d');
                                 }
                                 
+                                
+                                // Loop through the report fields
                                 // Loop through the report fields
                                 foreach ($reportFields as $fieldName => $fieldLabel) {
                                     echo '<tr';
@@ -124,31 +147,38 @@
                                     echo '<form action="removeReport.php" method="post">';
                                     echo '<input type="hidden" name="student_id" value="' . $studID . '" />';
                                     echo '<input type="hidden" name="form_type" value="' . $fieldName . '" />';
-                                    echo '<input type="submit" value="Unsubmit" name="submit" />';
+                                    echo '<input type="submit" class="btn btn-secondary" value="Unsubmit" name="submit" />';
                                     echo '</form>';
                                     echo '</td>';
                                     echo '</tr>';
 
                                     echo '<tr>';
                                     echo '<td>' . $fieldLabel . '</td>';
+                                    
                                     // Determine the appropriate due date based on the report type
                                     switch ($fieldName) {
                                         case 'monthlyReport1':
+                                            $startDate = $startDateMonthlyReport1Str;
                                             $dueDate = $dueDateMonthlyReport1Str;
                                             break;
                                         case 'monthlyReport2':
+                                            $startDate = $startDateMonthlyReport2Str;
                                             $dueDate = $dueDateMonthlyReport2Str;
                                             break;
                                         case 'monthlyReport3':
+                                            $startDate = $startDateMonthlyReport3Str;
                                             $dueDate = $dueDateMonthlyReport3Str;
                                             break;
                                         case 'evaluationReport':
+                                            $startDate = $startDateEvaluationReportStr;
                                             $dueDate = $dueDateEvaluationReportStr;
                                             break;
                                         default:
                                             $dueDate = ""; 
                                             break;
                                     }
+                                    
+                                    echo '<td>' . $startDate . '</td>';
                                     echo '<td>' . $dueDate . '</td>';
                                     echo '<td>';
 
@@ -160,28 +190,41 @@
                                         echo '<form action="removeReport.php" method="post">';
                                         echo '<input type="hidden" name="student_id" value="' . $studID . '" />';
                                         echo '<input type="hidden" name="form_type" value="' . $fieldName . '" />';
-                                        echo '<input type="submit" value="Unsubmit" name="submit" />';
+                                        echo '<input type="submit" class="btn btn-secondary" value="Unsubmit" name="submit" />';
                                         echo '</form>';
                                     } else {
-                                        // Check if the due date has passed
-                                        $dueDateTimestamp = strtotime($dueDate);
-                                        $currentDateTimestamp = strtotime(date('Y-m-d'));
-                                        if ($dueDateTimestamp < $currentDateTimestamp) {
-                                            // Due date has passed and the form is not submitted, disable the "Submit" button
-                                            echo '<button type="button" class="btn btn-secondary" disabled>Submit Disabled</button>';
+                                        // Check if the startDate and dueDate are within the current date
+                                        $currentDate = new DateTime();
+                                        
+                                        if ($currentDate >= new DateTime($startDate) && $currentDate <= new DateTime($dueDate)) {
+                                            // Check if the required forms are submitted
+                                            if (
+                                                !empty($row['indemnity']) &&
+                                                !empty($row['parentAcknowledgement']) &&
+                                                !empty($row['companyAcceptance'])
+                                            ) {
+                                                // Display file upload form
+                                                echo '<form action="submitReport.php" method="post" enctype="multipart/form-data">';
+                                                echo '<input type="file" name="pdf_file" accept=".pdf" />';
+                                                echo '<input type="hidden" name="student_id" value="' . $studID . '" />';
+                                                echo '<input type="hidden" name="form_type" value="' . $fieldName . '" />';
+                                                echo '<input type="submit" class="btn btn-secondary" value="Upload" name="submit" />';
+                                                echo '</form>';
+                                            } else {
+                                                // Required forms are not submitted, disable the "Submit" button
+                                                echo '<button type="button" class="btn btn-secondary" disabled>Submit Disabled</button>';
+                                            }
                                         } else {
-                                            // Display file upload form
-                                            echo '<form action="submitReport.php" method="post" enctype="multipart/form-data">';
-                                            echo '<input type="file" name="pdf_file" accept=".pdf" />';
-                                            echo '<input type="hidden" name="student_id" value="' . $studID . '" />';
-                                            echo '<input type="hidden" name="form_type" value="' . $fieldName . '" />';
-                                            echo '<input type="submit" value="Upload" name="submit" />';
-                                            echo '</form>';
+                                            // Start date and due date are not within the current date, disable the "Submit" button
+                                            echo '<button type="button" class="btn btn-secondary" disabled>Submit Disabled</button>';
                                         }
                                     }
                                     echo '</td>';
                                     echo '</tr>';
                                 }
+
+
+                                
                             }
                         } else {
                             echo '<tr>';
