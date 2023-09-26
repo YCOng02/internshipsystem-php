@@ -85,6 +85,7 @@
                         AND Sup.staffID = Sta.staffID
                         AND (I.internshipStatus = 'In Progress' OR I.internshipStatus = 'Completed')
                         AND startMonthYear < '" . $currentDate . "'
+                        // AND Sta.staffID = 
                         AND endMonthYear > '" . $currentDate . "'
                         ORDER BY Ses.sessionID";
 
