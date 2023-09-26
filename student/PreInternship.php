@@ -107,7 +107,7 @@
                                 echo '<form action="removePDF.php" method="post">';
                                 echo '<input type="hidden" name="student_id" value="' . $studID . '" />';
                                 echo '<input type="hidden" name="form_type" value="indemnity" />';
-                                echo '<input type="submit" value="Unsubmit" name="submit" />';
+                                echo '<input type="submit" class="btn btn-secondary" value="Unsubmit" name="submit" />';
                                 echo '</form>';
                                 echo '</td>';
                                 echo '</tr>';
@@ -130,7 +130,7 @@
                                     echo '<form action="removePDF.php" method="post">';
                                     echo '<input type="hidden" name="student_id" value="' . $studID . '" />';
                                     echo '<input type="hidden" name="form_type" value="indemnity" />';
-                                    echo '<input type="submit" value="Unsubmit" name="submit" />';
+                                    echo '<input type="submit" class="btn btn-secondary" value="Unsubmit" name="submit" />';
                                     echo '</form>';
                                 } else {
                                     // Check if the due date has passed and the status is "Missing"
@@ -143,7 +143,7 @@
                                         echo '<input type="file" name="pdf_file" accept=".pdf" />';
                                         echo '<input type="hidden" name="student_id" value="' . $studID . '" />';
                                         echo '<input type="hidden" name="form_type" value="indemnity" />';
-                                        echo '<input type="submit" value="Upload" name="submit" />';
+                                        echo '<input type="submit" class="btn btn-secondary" value="Upload" name="submit" />';
                                         echo '</form>';
                                     }
                                 }
@@ -162,7 +162,7 @@
                                 echo '<form action="removePDF.php" method="post">';
                                 echo '<input type="hidden" name="student_id" value="' . $studID . '" />';
                                 echo '<input type="hidden" name="form_type" value="parentAcknowledgement" />';
-                                echo '<input type="submit" value="Unsubmit" name="submit" />';
+                                echo '<input type="submit" class="btn btn-secondary" value="Unsubmit" name="submit" />';
                                 echo '</form>';
                                 echo '</td>';
                                 echo '</tr>';
@@ -182,7 +182,7 @@
                                     echo '<form action="removePDF.php" method="post">';
                                     echo '<input type="hidden" name="student_id" value="' . $studID . '" />';
                                     echo '<input type="hidden" name="form_type" value="parentAcknowledgement" />';
-                                    echo '<input type="submit" value="Unsubmit" name="submit" />';
+                                    echo '<input type="submit" class="btn btn-secondary" value="Unsubmit" name="submit" />';
                                     echo '</form>';
                                 } else {
                                     // Check if the due date has passed and the status is "Missing"
@@ -195,7 +195,7 @@
                                         echo '<input type="file" name="pdf_file" accept=".pdf" />';
                                         echo '<input type="hidden" name="student_id" value="' . $studID . '" />';
                                         echo '<input type="hidden" name="form_type" value="parentAcknowledgement" />';
-                                        echo '<input type="submit" value="Upload" name="submit" />';
+                                        echo '<input type="submit" class="btn btn-secondary" value="Upload" name="submit" />';
                                         echo '</form>';
                                     }
                                 }
@@ -219,7 +219,7 @@
                                     echo '<form action="removePDF.php" method="post">';
                                     echo '<input type="hidden" name="student_id" value="' . $studID . '" />';
                                     echo '<input type="hidden" name="form_type" value="companyAcceptance" />';
-                                    echo '<input type="submit" value="Unsubmit" name="submit" />';
+                                    echo '<input type="submit" class="btn btn-secondary" value="Unsubmit" name="submit" />';
                                     echo '</form>';
                                 } else {
                                     if ($dueDateTimestamp < $currentDateTimestamp && $row['companyAcceptanceStatus'] === 'Missing') {
@@ -231,7 +231,7 @@
                                         echo '<input type="file" name="pdf_file" accept=".pdf" />';
                                         echo '<input type="hidden" name="student_id" value="' . $studID . '" />';
                                         echo '<input type="hidden" name="form_type" value="companyAcceptance" />';
-                                        echo '<input type="submit" value="Upload" name="submit" />';
+                                        echo '<input type="submit" class="btn btn-secondary" value="Upload" name="submit" />';
                                         echo '</form>';
                                     }
                                 }

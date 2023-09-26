@@ -111,30 +111,32 @@
                     $reportResult = $con->query($reportSql);
 
                     if ($reportResult->num_rows > 0) {
-                        
+                    
                         // Output the retrieved report names and grades in a separate table
-
-                        echo '</br>';
-                        echo '</br>';
+                        echo '<br>';
+                        echo '<br>';
                         echo '<div style="display: flex; justify-content: center;">';
-                        echo '<table style="width: 40%;" border="1">';
+                        echo '<table style="width: 50%;" border="1">';
                         echo '<tr style="background-color: lightgray; color: black; text-align: center; font-size: 25px; font-weight: bold;">';
                         echo '<th style="width: 70%; text-align: center;">Report</th>';
                         echo '<th style="width: 30%; text-align: left;">Grades</th>';
                         echo '</tr>';
-                        
-                    
+                
                         $reportFields = array(
                             'monthlyReport1' => 'Monthly Report 1',
                             'monthlyReport2' => 'Monthly Report 2',
                             'monthlyReport3' => 'Monthly Report 3',
                             'evaluationReport' => 'Evaluation Report'
                         );
-                    
+                
                         while ($row = $reportResult->fetch_assoc()) {
                             foreach ($reportFields as $fieldName => $fieldLabel) {
                                 $grade = $row[$fieldName . 'Grade'];
-                    
+                                // Check if the grade is null and display as "Ungraded"
+                                if ($grade === null) {
+                                    $grade = "Ungraded";
+                                }
+                
                                 echo "<tr>
                                         <td>$fieldLabel</td>
                                         <td>$grade</td>
@@ -142,17 +144,22 @@
                             }
                             $finalGrade = $row['finalGrade'];
                         }
-                    
+                
                         // Add the finalGrade to the report table as the last row
+                        // Check if the finalGrade is null and display as "Ungraded"
+                        if ($finalGrade === null) {
+                            $finalGrade = "Ungraded";
+                        }
                         echo "<tr>
                                 <td><b>Final Grade</b></td>
                                 <td><b> $finalGrade </b></td>
                             </tr>";
-                    
+                
                         echo '</table>';
                     } else {
                         echo "No report grades found for this student.";
                     }
+                
 
 
                     // Close the database connection
