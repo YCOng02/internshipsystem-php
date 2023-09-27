@@ -1,3 +1,4 @@
+
 <?php
 
 // Check if the session is not empty

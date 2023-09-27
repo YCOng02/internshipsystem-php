@@ -1,5 +1,6 @@
 <?php
-session_start();
+$pageTitle = 'Profile';
+include 'studentHeader.php';
 
 // Check if the session variables are set before accessing them
 if (isset($_SESSION['studName']) && isset($_SESSION['studEmail'])) {
@@ -10,9 +11,6 @@ if (isset($_SESSION['studName']) && isset($_SESSION['studEmail'])) {
     $studName = "Guest";
     $studEmail = "guest@example.com";
 }
-
-$pageTitle = 'Profile';
-include 'studentHeader.php';
 
 ?>
 
