@@ -55,6 +55,7 @@
     </script>
 
     <div style="overflow-x: scroll;" class="container row justify-content-md-center mx-auto">
+    <div class="container" style="min-height:65vh; max-height:65vh;">
         <table id="StudentGV" class="table w-100 table-striped my-1 table-bordered table-responsive table-hover">
             <table class="table w-100 table-striped my-1 table-bordered table-responsive table-hover">
                 <tr>
@@ -125,6 +126,7 @@
             </script>
 
         </table>
+    </div>
     </div>
 
     <footer class="bg-light text-black pt-5 pb-4">
