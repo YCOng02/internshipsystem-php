@@ -126,7 +126,7 @@ if ($con->connect_error) {
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="https://my-internship-content.s3.amazonaws.com/logo.png" width="250" height="80" />
+                <img src="https://internship-bucket-23.s3.amazonaws.com/logo.png" width="250" height="80" />
             </a>
             <div class="navbar-container">
                 <div class="collapse navbar-collapse master" id="navbarNav">
@@ -149,7 +149,7 @@ if ($con->connect_error) {
             <div class="col-md-3 border-right">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                     <img class="rounded-circle mt-5" width="150px"
-                        src="https://my-internship-content.s3.amazonaws.com/user-portrait.jpg">
+                        src="https://internship-bucket-23.s3.amazonaws.com/user-portrait.jpg">
                     <span class="font-weight-bold">
                         <?php echo $staffName; ?>
                     </span>
