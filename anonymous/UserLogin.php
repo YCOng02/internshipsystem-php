@@ -9,8 +9,8 @@ if (isset($_SESSION['login_failed'])) {
 <!DOCTYPE html>
 <html>
 <?php
-    $pageTitle = 'User Login';
-    include 'header.php';
+$pageTitle = 'User Login';
+include 'header.php';
 ?>
 
 <body style="min-height:100vh" class="bg-bright">
@@ -34,12 +34,14 @@ if (isset($_SESSION['login_failed'])) {
 
     <div id="content" class="text-dark d-flex align-items-center justify-content-center loginPage">
         <div class="loginWindow bg-white rounded col-md-5 col-lg-6 col-sm-6">
-            <div class="nav-link active flex-grow-1 loginTab p-3 text-center">User Login</div>
+            <div class="nav-link  rounded-2 active flex-grow-1 loginTab p-3 text-center">
+                <h5>User Login</h5>
+            </div>
 
             <form method="post" action="loginUser.php">
                 <div class="container-fluid">
 
-                    <?php 
+                    <?php
                     if (isset($login_failed)) {
                         echo '<div class="text-danger text-center">Invalid login email or password.</div>';
                     }
