@@ -1,6 +1,5 @@
 <?php
 session_start();
-// Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve user input
     $email = $_POST["txtEmail"];
@@ -43,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["studID"] = $studID;
             $_SESSION["login_successful"] = "1";
             // Redirect to Profile.php
-            header("Location: ../student/Profile.php");
+            header("Location: ../student/InternshipDetails.php");
 
         } else {
             // Authentication failed, display an error message or redirect to a login page with an error message

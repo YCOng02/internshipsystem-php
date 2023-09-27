@@ -1,5 +1,7 @@
 <?php
 session_start();
+$pageTitle = 'Profile';
+include 'staffHeader.php';
 
 // Check if the session variables are set before accessing them
 if (isset($_SESSION['staffID'])) {
@@ -12,18 +14,6 @@ if (isset($_SESSION['staffID'])) {
 ?>
 
 <html lang="en">
-
-<head>
-    <title>Master Page</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="css/style.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-</head>
 
 <?php
 
@@ -156,73 +146,73 @@ if ($con->connect_error) {
             <div class="col-md-5 border-right">
                 <div class="p-3 py-5">
 
-                    <div class="row">
-                        <div class="justify-content-start col-10">
-                            <h4 class="text-right">Profile Settings</h4>
-                        </div>
-                        <div class="justify-content-end align-items-end col-2">
-                            <button id="btnEdit" onclick="editInfo()">Edit</button>
-                        </div>
+                <div class="row">
+                    <div class="justify-content-start col-10">
+                        <h4 class="text-right">Profile Settings</h4>
                     </div>
+                    <div class="justify-content-end align-items-end col-2">
+                        <button id="btnEdit" onclick="editInfo()">Edit</button>
+                    </div>
+                </div>
 
-                    <div class="row mt-3">
-                        <div class="col-md-12">
-                            <label class="labels">Name</label>
-                            <input id="lblName" type="text" class="form-control" placeholder="Name"
-                                value="<?php echo $staffName; ?>" readonly>
-                        </div>
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label class="labels">Name</label>
+                        <input id="lblName" type="text" class="form-control" placeholder="Name"
+                            value="<?php echo $staffName; ?>" readonly>
                     </div>
+                </div>
 
-                    <div class="row mt-3">
-                        <div class="col-md-12">
-                            <label class="labels">Staff ID</label>
-                            <input id="lblID" type="text" class="form-control" placeholder="ID"
-                                value="<?php echo $staffID; ?>" readonly>
-                        </div>
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label class="labels">Staff ID</label>
+                        <input id="lblID" type="text" class="form-control" placeholder="ID"
+                            value="<?php echo $staffID; ?>" readonly>
                     </div>
-                    <div class="row mt-3">
-                        <div class="col-md-12">
-                            <label class="labels">Email Address</label>
-                            <input id="lblEmail" type="text" class="form-control" placeholder="Email"
-                                value="<?php echo $staffEmail; ?>" readonly>
-                        </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label class="labels">Email Address</label>
+                        <input id="lblEmail" type="text" class="form-control" placeholder="Email"
+                            value="<?php echo $staffEmail; ?>" readonly>
                     </div>
-                    <div class="row mt-2">
-                        <div class="col-md-12">
-                            <label class="labels">IC No. </label>
-                            <input id="lblIC" type="text" class="form-control" placeholder="IC Name"
-                                value="<?php echo $staffIC; ?>" readonly>
-                        </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-12">
+                        <label class="labels">IC No. </label>
+                        <input id="lblIC" type="text" class="form-control" placeholder="IC Name"
+                            value="<?php echo $staffIC; ?>" readonly>
                     </div>
-                    <div class="row mt-2">
-                        <div class="col-md-12">
-                            <label class="labels">Gender</label>
-                            <input id="lblGender" type="text" class="form-control" placeholder="Gender"
-                                value="<?php echo $staffGender; ?>" readonly>
-                        </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-12">
+                        <label class="labels">Gender</label>
+                        <input id="lblGender" type="text" class="form-control" placeholder="Gender"
+                            value="<?php echo $staffGender; ?>" readonly>
                     </div>
+                </div>
 
-                    <div class="row mt-2">
-                        <div class="col-md-12">
-                            <label class="labels">Phone No. </label>
-                            <input id="lblPhoneNo" type="text" class="form-control" placeholder="first name"
-                                value="<?php echo $staffPhoneNo; ?>" readonly>
-                        </div>
+                <div class="row mt-2">
+                    <div class="col-md-12">
+                        <label class="labels">Phone No. </label>
+                        <input id="lblPhoneNo" type="phone" class="form-control" placeholder="first name"
+                            value="<?php echo $staffPhoneNo; ?>" readonly>
                     </div>
+                </div>
 
-                    <div class="row mt-2 justify-content-end">
-                        <div class="col-md-12 ">
-                            <button style="display: none; width: 70px;" class="mx-auto" id="btnCancel"
-                                onclick="cancelSavingInfo()">Cancel</button>
-                            <button style="display: none; width: 70px;" class="mx-auto" id="btnSave"
-                                onclick="saveInfo()">Save</button>
-                        </div>
+                <div class="row mt-2 justify-content-end">
+                    <div class="col-md-12 ">
+                        <button style="display: none; width: 70px;" class="mx-auto" id="btnCancel"
+                            onclick="cancelSavingInfo()">Cancel</button>
+                        <button style="display: none; width: 70px;" class="mx-auto" id="btnSave"
+                            onclick="saveInfo()">Save</button>
                     </div>
                 </div>
             </div>
-
         </div>
+
     </div>
+</div>
 
 </body>
 

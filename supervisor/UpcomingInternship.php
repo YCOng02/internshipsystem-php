@@ -38,23 +38,23 @@
         </div>
     </nav>
 
-    <div class="container row justify-content-md-center mx-auto">
-        <div class="nav nav-tabs border-0" id="nav-tab" role="tablist">
-            <button id="btnCurrent" class="nav-link  w-50 text-black" style="border-color: #FFFBD6"
-                onclick="redirectToCurrent()">Current</button>
-            <button id="btnUpcoming" class="nav-link active w-50 text-white border-0 "
-                style="background-color: #dc143c">Upcoming</button>
-        </div>
+<div class="container row justify-content-md-center mx-auto">
+    <div class="nav nav-tabs border-0" id="nav-tab" role="tablist">
+        <button id="btnCurrent" class="nav-link  w-50 text-black" style="border-color: #FFFBD6"
+            onclick="redirectToCurrent()">Current</button>
+        <button id="btnUpcoming" class="nav-link active w-50 text-white border-0 "
+            style="background-color: #dc143c">Upcoming</button>
     </div>
+</div>
 
-    <script type="text/javascript">
-        function redirectToCurrent() {
-            // Redirect to the "Upcoming.php" page when the button is clicked
-            window.location.href = "SupervisorHome.php";
-        }
-    </script>
+<script type="text/javascript">
+    function redirectToCurrent() {
+        // Redirect to the "Upcoming.php" page when the button is clicked
+        window.location.href = "SupervisorHome.php";
+    }
+</script>
 
-    <div style="overflow-x: scroll;" class="container row justify-content-md-center mx-auto">
+<div style="overflow-x: scroll;" class="container row justify-content-md-center mx-auto">
     <div class="container" style="min-height:65vh; max-height:65vh;">
         <table id="StudentGV" class="table w-100 table-striped my-1 table-bordered table-responsive table-hover">
             <table class="table w-100 table-striped my-1 table-bordered table-responsive table-hover">
@@ -127,20 +127,8 @@
 
         </table>
     </div>
-    </div>
+</div>
 
-    <footer class="bg-light text-black pt-5 pb-4">
-        <div class="container text-center text-md-left">
-            <hr class="mb-4">
-            <div class="align-items-center">
-                <div class="col-md-12 col-lg-12 text-center">
-                    <p>Copyright © 2023 All Rights Reserved by:
-                        <strong>2023 - TAR UMT FOCS ITP</strong>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </footer>
-</body>
-
-</html>
+<?php
+include 'staffFooter.php';
+?>

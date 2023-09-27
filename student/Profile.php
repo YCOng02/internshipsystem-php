@@ -1,5 +1,6 @@
 <?php
-session_start();
+$pageTitle = 'Profile';
+include 'studentHeader.php';
 
 // Check if the session variables are set before accessing them
 if (isset($_SESSION['studName']) && isset($_SESSION['studEmail'])) {
@@ -10,6 +11,7 @@ if (isset($_SESSION['studName']) && isset($_SESSION['studEmail'])) {
     $studName = "Guest";
     $studEmail = "guest@example.com";
 }
+
 ?>
 
 <html lang="en">
@@ -64,38 +66,43 @@ if (isset($_SESSION['studName']) && isset($_SESSION['studEmail'])) {
                         </div>
                     </div>
 
-                    <div class="row mt-3">
-                        <div class="col-md-12">
-                            <label class="labels">Student ID</label>
-                            <input type="text" class="form-control" placeholder="first name" value="<?php echo $studName; ?>" readonly>
-                        </div>
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label class="labels">Student ID</label>
+                        <input type="text" class="form-control" placeholder="first name"
+                            value="<?php echo $studName; ?>" readonly>
                     </div>
-                    <div class="row mt-3">
-                        <div class="col-md-12">
-                            <label class="labels">Email Address</label>
-                            <input type="text" class="form-control" placeholder="first name" value="<?php echo $studName; ?>" readonly>
-                        </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label class="labels">Email Address</label>
+                        <input type="text" class="form-control" placeholder="first name"
+                            value="<?php echo $studName; ?>" readonly>
                     </div>
-                    <div class="row mt-2">
-                        <div class="col-md-12">
-                            <label class="labels">IC No. </label>
-                            <input type="text" class="form-control" placeholder="first name" value="<?php echo $studName; ?>" readonly>
-                        </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-12">
+                        <label class="labels">IC No. </label>
+                        <input type="text" class="form-control" placeholder="first name"
+                            value="<?php echo $studName; ?>" readonly>
                     </div>
-                    <div class="row mt-2">
-                        <div class="col-md-12">
-                            <label class="labels">Gender</label>
-                            <input type="text" class="form-control" placeholder="first name" value="<?php echo $studName; ?>" readonly>
-                        </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-12">
+                        <label class="labels">Gender</label>
+                        <input type="text" class="form-control" placeholder="first name"
+                            value="<?php echo $studName; ?>" readonly>
                     </div>
+                </div>
 
-                    <div class="row mt-2">
-                        <div class="col-md-12">
-                            <label class="labels">Phone No. </label>
-                            <input type="text" class="form-control" placeholder="first name" value="<?php echo $studName; ?>" readonly>
-                        </div>
+                <div class="row mt-2">
+                    <div class="col-md-12">
+                        <label class="labels">Phone No. </label>
+                        <input type="text" class="form-control" placeholder="first name"
+                            value="<?php echo $studName; ?>" readonly>
                     </div>
-                    <div class="row mt-2">
-                        <div class="col-md-12">
-                            <label class="labels">Qualification</label>
-                            <input type="text" class="form-control"
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-12">
+                        <label class="labels">Qualification</label>
+                        <input type="text" class="form-control"
