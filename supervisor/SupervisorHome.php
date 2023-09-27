@@ -3,7 +3,7 @@ session_start();
 
 // Check if the session variables are set before accessing them
 if (isset($_SESSION['staffID'])) {
-    $staffID = $_SESSION['stafffID'];
+    $staffID = $_SESSION['staffID'];
 } else {
     // Handle the case where the session data is not set
     $staffID = "empty session";
