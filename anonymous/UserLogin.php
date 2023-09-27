@@ -42,7 +42,7 @@ include 'header.php';
                 <div class="container-fluid">
 
                     <?php
-                    if (isset($login_failed)) {
+                    if (isset($_GET['error'])) {
                         echo '<div class="text-danger text-center">Invalid login email or password.</div>';
                     }
                     ?>
@@ -96,3 +96,7 @@ include 'header.php';
                 iconPasswordVisibility.classList.add("fa-eye");
             } else {
                 passwordInput
+
+            }
+        }
+    </script>

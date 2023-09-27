@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 unset($_SESSION['login_failed']);
             }
             // Redirect to Profile.php
-            header("Location: ../supervisor/StaffProfile.php");
+            header("Location: StaffProfile.php");
 
         } else {
             // Authentication failed, display an error message or redirect to a login page with an error message
