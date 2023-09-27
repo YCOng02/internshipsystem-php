@@ -77,9 +77,6 @@ if ($con->connect_error) {
         var staffName = document.getElementById("lblName").value;
         var staffPhoneNo = document.getElementById("lblPhoneNo").value;
 
-        var testing = document.getElementById("result");
-        testing.value = staffName;
-
         $.ajax({
             type: "POST",
             url: "updateStaffProfile.php",
@@ -121,6 +118,7 @@ if ($con->connect_error) {
     }
 
 </script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -141,9 +139,6 @@ if ($con->connect_error) {
     </nav>
 
     <div class="container rounded bg-white mt-0 mb-5">
-
-        <input type="text" id="result">
-        <div id="result">sda</div>
 
         <div class="row">
             <div class="col-md-3 border-right">

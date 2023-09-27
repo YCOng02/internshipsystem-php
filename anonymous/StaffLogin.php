@@ -25,7 +25,9 @@ include 'header.php';
 
     <div id="content" class="text-dark d-flex align-items-center justify-content-center loginPage">
         <div class="loginWindow bg-white rounded col-md-5 col-lg-6 col-sm-6">
-            <div class="nav-link active flex-grow-1 loginTab p-3 text-center">Staff Login</div>
+            <div class="nav-link  rounded-2 active flex-grow-1 loginTab p-3 text-center">
+                <h5>Staff Login</h5>
+            </div>
 
             <form method="post" action="loginStaff.php">
                 <div class="container-fluid">
