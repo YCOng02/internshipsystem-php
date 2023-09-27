@@ -73,7 +73,8 @@ CREATE TABLE `internship` (
 --
 
 INSERT INTO `internship` (`internshipID`, `studID`, `sessionID`, `indemnity`, `indemnityStatus`, `parentAcknowledgement`, `parentAcknowledgementStatus`, `companyAcceptance`, `companyAcceptanceStatus`, `monthlyReport1`, `monthlyReport1Grade`, `monthlyReport2`, `monthlyReport2Grade`, `monthlyReport3`, `monthlyReport3Grade`, `evaluationReport`, `evaluationReportGrade`, `finalGrade`, `internshipStatus`) VALUES
-('I2308001', '2205950', '202308', 'Sample indemnity text', 'Pending', 'Sample parent ack text', 'Pending', 'Sample company ack text', 'Pending', 'Sample report 1 text', 95, 'Sample report 2 text', 88, 'Sample report 3 text', 92, 'Sample eval report text', 90, 94, 'Completed');
+('I2308001', '2205950', '202308', 'Sample indemnity text', 'Pending', 'Sample parent ack text', 'Pending', 'Sample company ack text', 'Pending', 'Sample report 1 text', 95, 'Sample report 2 text', 88, 'Sample report 3 text', 92, 'Sample eval report text', 90, 94, 'Completed'),
+('I2308002', '2205951', '202308', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Progress');
 
 -- --------------------------------------------------------
 
@@ -142,7 +143,8 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`studID`, `studName`, `studEmail`, `studIC`, `studGender`, `studPhoneNo`, `studPassword`, `studQualification`, `studSecurityQuestion`, `studSecurityAnswer`) VALUES
-('2205950', 'John Doe', 'john.doe@example.com', '010120070666', 'Male', '0174012866', 'ef92b778bafe771e89245b89ecbc08a44a4e166c0665991188', 'Degree', 'What is the name of your first pet?', 'Cat\r\n');
+('2205950', 'John Doe', 'john.doe@example.com', '010120070666', 'Male', '0174012866', 'ef92b778bafe771e89245b89ecbc08a44a4e166c0665991188', 'Degree', 'What is the name of your first pet?', 'Cat\r\n'),
+('2205951', 'Vincent Choo', 'vincentchoo88@gmail.com', '111111223333', 'Male', '0174012863', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a', 'Diploma', '', '');
 
 -- --------------------------------------------------------
 

@@ -8,7 +8,7 @@ if (isset($_POST['action']) && $_POST['action'] == "updateDatabase") {
     $id = $_POST['id'];
 
     require '../student/connect.php';
-    
+
     // Check for connection errors
     if ($con->connect_error) {
         die("Connection failed: " . $con->connect_error);
@@ -32,7 +32,7 @@ if (isset($_POST['action']) && $_POST['action'] == "updateDatabase") {
 } else if (isset($_POST['action']) && $_POST['action'] == "terminate") {
     $id = $_POST['id'];
     $status = "Terminated";
-    $con = new mysqli('localhost', 'root', '', 'internship');
+    require '../student/connect.php';
 
     // Check for connection errors
     if ($con->connect_error) {
@@ -60,7 +60,7 @@ if (isset($_POST['action']) && $_POST['action'] == "updateDatabase") {
     $finalMark = $_POST['finalMark'];
     $id = $_POST['id'];
 
-    $con = new mysqli('localhost', 'root', '', 'internship');
+    require '../student/connect.php';
 
     // Check for connection errors
     if ($con->connect_error) {
