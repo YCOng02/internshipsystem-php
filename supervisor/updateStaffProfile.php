@@ -14,6 +14,9 @@ if (isset($_POST['action']) && $_POST['action'] == "ProfileUpdate") {
         die("Connection failed: " . $con->connect_error);
     }
 
+    $testName = "Ali"; //jane smith  
+
+
     $sql = "UPDATE staff SET staffName = ?, staffPhoneNo = ? WHERE staffID = ?";
     $stmt = $con->prepare($sql);
 
