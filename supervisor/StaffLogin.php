@@ -42,8 +42,8 @@ session_start();
                 <div class="container-fluid">
 
 
-                    <?php
-                    if (isset($_SESSION['login_failed'])) {
+                <?php
+                    if (isset($_GET['error'])) {
                         echo '<div class="text-danger text-center">Invalid login email or password.</div>';
                     }
                     ?>

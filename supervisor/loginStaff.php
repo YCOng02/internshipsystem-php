@@ -40,19 +40,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 unset($_SESSION['login_failed']);
             }
             // Redirect to Profile.php
-            header("Location: StaffProfile.php");
+            header("Location: SupervisorHome.php");
 
         } else {
             // Authentication failed, display an error message or redirect to a login page with an error message
             echo "Login failed. Invalid email or password.";
-            $_SESSION["login_failed"] = "1";
-            header("Location: StaffLogin.php");
+            header("Location: StaffLogin.php?error=" . urlencode($errorMessage)); // Redirect with error message
+            
         }
     } else {
         // Email not found in the database, display an error message
         echo "Login failed. Email not found.";
-        $_SESSION["login_failed"] = "1";
-        header("Location: StaffLogin.php");
+        header("Location: StaffLogin.php?error=" . urlencode($errorMessage)); // Redirect with error message
     }
 
     // Close the database connection
