@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve user input
@@ -38,9 +39,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Compare the hashed input password with the stored hashed password
         if ($hashedPassword === $storedHashedPassword) {
             // Password is correct, set session variables with student details
-            session_start();
+            
             $_SESSION["studID"] = $studID;
-            $_SESSION["login_status"] = "successful";
+            $_SESSION["login_successful"] = "1";
+
+            if(isset($_SESSION['login_failed'])){
+                unset($_SESSION['login_failed']);
+            }
 
             // Redirect to Profile.php
             header("Location: ../student/Profile.php");
@@ -48,13 +53,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             // Authentication failed, display an error message or redirect to a login page with an error message
             echo "Login failed. Invalid email or password.";
-            $_SESSION["login_status"] = "failed.  invlid email or password.";
+            
+            $_SESSION["login_failed"] = "1";
             header("Location: UserLogin.php");
         }
     } else {
         // Email not found in the database, display an error message
         echo "Login failed. Email not found.";
-        $_SESSION["login_status"] = "failed.  invlid email or password.";
+        $_SESSION["login_failed"] = "1";
         header("Location: UserLogin.php");
     }
 

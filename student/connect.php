@@ -5,8 +5,5 @@
 
         $con = new mysqli('localhost', 'root', '', 'internship');
 
-        
-        //for testing purposes----------------------------
-        //$con = new mysqli('localhost', 'root', '', 'internship');
 
 ?>  
