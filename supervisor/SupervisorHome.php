@@ -3,7 +3,7 @@ session_start();
 
 // Check if the session variables are set before accessing them
 if (isset($_SESSION['staffID'])) {
-    $staffID = $_SESSION['stafffID'];
+    $staffID = $_SESSION['staffID'];
 } else {
     // Handle the case where the session data is not set
     $staffID = "empty session";
@@ -34,7 +34,7 @@ if (isset($_SESSION['staffID'])) {
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="https://my-internship-content.s3.amazonaws.com/logo.png" width="250" height="80" />
+                <img src="https://internship-bucket-23.s3.amazonaws.com/logo.png" width="250" height="80" />
             </a>
             <div class="navbar-container">
                 <div class="collapse navbar-collapse master" id="navbarNav">

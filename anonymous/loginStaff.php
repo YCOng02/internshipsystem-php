@@ -35,13 +35,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Password is correct, set session variables with student details
             $_SESSION["staffID"] = $staffID;
             $_SESSION['login_successful'] = "1";
-            
-            if(isset($_SESSION['login_failed'])){
+
+            if (isset($_SESSION['login_failed'])) {
                 unset($_SESSION['login_failed']);
             }
             // Redirect to Profile.php
             header("Location: ../supervisor/StaffProfile.php");
-            
+
         } else {
             // Authentication failed, display an error message or redirect to a login page with an error message
             echo "Login failed. Invalid email or password.";
