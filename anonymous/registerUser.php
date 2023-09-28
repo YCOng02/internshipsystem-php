@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = mysqli_real_escape_string($con, $email);
 
     // Prepare and execute an INSERT statement for the STUDENT table
-    $studentInsertQuery = "INSERT INTO STUDENT (studName, studID, studIC, studEmail, studGender, studPhoneNo, studPassword, studQualification) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $studentInsertQuery = "INSERT INTO student (studName, studID, studIC, studEmail, studGender, studPhoneNo, studPassword, studQualification) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     $studentStmt = $con->prepare($studentInsertQuery);
     $studentStmt->bind_param("ssssssss", $name, $studentID, $nric, $email, $gender, $phone, $hashedPassword, $qualification);
 
