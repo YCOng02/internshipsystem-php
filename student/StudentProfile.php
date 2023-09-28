@@ -49,18 +49,18 @@ if ($con->connect_error) {
     }
 
     function saveInfo() {
-        var staffID = document.getElementById("lblID").value;
-        var staffName = document.getElementById("lblName").value;
-        var staffPhoneNo = document.getElementById("lblPhone").value;
+        var studID = document.getElementById("lblID").value;
+        var studName = document.getElementById("lblName").value;
+        var studPhoneNo = document.getElementById("lblPhone").value;
 
         $.ajax({
             type: "POST",
             url: "updateStudentProfile.php",
             data: {
                 action: "ProfileUpdate",
-                id: staffID,
-                name: staffName,
-                phone: staffPhoneNo
+                id: studID,
+                name: studName,
+                phone: studPhoneNo
             }, success: function (response) {
                 // Display the response from the server
                 $("#result").html(response);

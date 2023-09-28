@@ -15,10 +15,10 @@ if (isset($_POST['action']) && $_POST['action'] == "ProfileUpdate") {
     }
 
 
-    $sql = "UPDATE student SET studName = ?, studPhoneNo = ?, WHERE studID = ?";
+    $sql = "UPDATE student SET studName = ?, studPhoneNo = ? WHERE studID = ?";
     $stmt = $con->prepare($sql);
 
-    $stmt->bind_param("ssss", $name, $phone, $id);
+    $stmt->bind_param("sss", $name, $phone, $id);
     $stmt->execute();
 
     if ($stmt->affected_rows > 0) {
