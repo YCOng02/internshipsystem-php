@@ -73,7 +73,7 @@ CREATE TABLE `internship` (
 --
 
 INSERT INTO `internship` (`internshipID`, `studID`, `sessionID`, `indemnity`, `indemnityStatus`, `parentAcknowledgement`, `parentAcknowledgementStatus`, `companyAcceptance`, `companyAcceptanceStatus`, `monthlyReport1`, `monthlyReport1Grade`, `monthlyReport2`, `monthlyReport2Grade`, `monthlyReport3`, `monthlyReport3Grade`, `evaluationReport`, `evaluationReportGrade`, `finalGrade`, `internshipStatus`) VALUES
-('I2308001', '2205950', '202308', 'Sample indemnity text', 'Pending', 'Sample parent ack text', 'Pending', 'Sample company ack text', 'Pending', 'Sample report 1 text', 95, 'Sample report 2 text', 88, 'Sample report 3 text', 92, 'Sample eval report text', 90, 94, 'Completed'),
+('I2308001', '2205950', '202308', NULL, 'Missing', NULL, 'Missing', NULL, 'Missing', NULL, 80, NULL, 88, NULL, 92, NULL, 90, 94, 'Completed'),
 ('I2308002', '2205951', '202308', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Progress');
 
 -- --------------------------------------------------------
