@@ -54,7 +54,6 @@ if ($con->connect_error) {
 
         inputName.removeAttribute("readonly");
         inputName.focus();
-        inputEmail.removeAttribute("readonly")
         inputPhoneNo.removeAttribute("readonly");
         editBtn.style.display = 'none';
         cancelBtn.style.display = 'inline-block';
@@ -108,7 +107,7 @@ if ($con->connect_error) {
     }
 
 </script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 <div class="container rounded bg-white mt-0 mb-5">
 
@@ -192,10 +191,9 @@ if ($con->connect_error) {
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 
-</body>
-
-</html>
+<?php
+include 'staffFooter.php';
+?>

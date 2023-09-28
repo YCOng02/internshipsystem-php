@@ -42,7 +42,6 @@ if ($con->connect_error) {
 
         inputName.removeAttribute("readonly");
         inputName.focus();
-        inputEmail.removeAttribute("readonly")
         inputPhoneNo.removeAttribute("readonly");
         editBtn.style.display = 'none';
         cancelBtn.style.display = 'inline-block';
@@ -198,6 +197,6 @@ if ($con->connect_error) {
 
 
 <?php
-    include 'studentFooter.php';
+include 'studentFooter.php';
 
 ?>
