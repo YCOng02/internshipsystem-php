@@ -46,7 +46,6 @@ if ($con->connect_error) {
         editBtn.style.display = 'none';
         cancelBtn.style.display = 'inline-block';
         saveBtn.style.display = 'inline-block';
-
     }
 
     function saveInfo() {
@@ -56,7 +55,7 @@ if ($con->connect_error) {
 
         $.ajax({
             type: "POST",
-            url: "updateStaffProfile.php",
+            url: "updateStudentProfile.php",
             data: {
                 action: "ProfileUpdate",
                 id: staffID,
@@ -95,10 +94,6 @@ if ($con->connect_error) {
     }
 
 </script>
-
-
-
-
 
 <div class="container rounded bg-white mt-0 mb-5">
     <div class="row">

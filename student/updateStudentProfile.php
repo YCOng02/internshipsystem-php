@@ -14,15 +14,11 @@ if (isset($_POST['action']) && $_POST['action'] == "ProfileUpdate") {
         die("Connection failed: " . $con->connect_error);
     }
 
-    
 
-
-    $sql = "UPDATE student SET studName = ?, studPhoneNo = ?,
-    studQualification = ?
-    WHERE staffID = ?";
+    $sql = "UPDATE student SET studName = ?, studPhoneNo = ?, WHERE studID = ?";
     $stmt = $con->prepare($sql);
 
-    $stmt->bind_param("ssss", $name, $phone, $qualification, $id);
+    $stmt->bind_param("ssss", $name, $phone, $id);
     $stmt->execute();
 
     if ($stmt->affected_rows > 0) {
