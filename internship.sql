@@ -54,8 +54,13 @@ CREATE TABLE `internship` (
 --
 
 INSERT INTO internship (internshipID, studID, sessionID, indemnity, indemnityStatus, parentAcknowledgement, parentAcknowledgementStatus, companyAcceptance, companyAcceptanceStatus, monthlyReport1, monthlyReport1Grade, monthlyReport2, monthlyReport2Grade, monthlyReport3, monthlyReport3Grade, evaluationReport, evaluationReportGrade, finalGrade, internshipStatus) VALUES
-('I2308001', '2205950', '202308', '../Report/FOCS_StudF01 Indemnity Letter.pdf', 'Accepted', '../Report/FOCS_StudF02 Parent Acknowledgement Form.pdf', 'Accepted','../Report/FOCS_EmpF02 Company Acceptance Letter.pdf', 'Accepted', '../Report/FOCS_StudF03 1st Student Progress Report.pdf', '90', '../Report/FOCS_StudF03 2nd Student Progress Report.pdf', '70', '../Report/FOCS_StudF03 3rd Student Progress Report.pdf
-', '80', '../Report/FOCS_StudF04 - Students_Evaluation Report.pdf', '90', '84', 'Completed'),
+('I2308001', '2205950', '202308', '../Report/FOCS_StudF01 Indemnity Letter.pdf', 'Accepted', 
+'../Report/FOCS_StudF02 Parent Acknowledgement Form.pdf', 'Accepted',
+'../Report/FOCS_EmpF02 Company Acceptance Letter.pdf', 'Accepted', 
+'../Report/FOCS_StudF03 1st Student Progress Report.pdf', '90', 
+'../Report/FOCS_StudF03 2nd Student Progress Report.pdf', '70', 
+'../Report/FOCS_StudF03 3rd Student Progress Report.pdf', '80', 
+'../Report/FOCS_StudF04 - Students_Evaluation Report.pdf', '90', '84', 'Completed'),
 ('I2308002', '2205951', '202308', NULL, 'Missing', NULL, 'Missing', NULL, 'Missing', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,  NULL, 'In Progress'),
 ('I2308003', '2205147', '202312', NULL, 'Missing', NULL, 'Missing', NULL, 'Missing', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Progress');
 
