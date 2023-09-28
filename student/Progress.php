@@ -49,6 +49,7 @@ include 'studentHeader.php';
                         } else {
                             $sql = "SELECT * FROM internship WHERE studID=$studID";
 
+
                             $result = $con->query($sql);
 
                             if ($result->num_rows > 0) {
@@ -60,6 +61,7 @@ include 'studentHeader.php';
                                     $endMonthYear = null;
                                     $startDate = "";
                                     $dueDate = "";
+                                    $internshipStatus = $row['internshipStatus'];
 
                                     // Define the report fields
                                     $reportFields = array(
@@ -174,7 +176,7 @@ include 'studentHeader.php';
                                             // Check if the startDate and dueDate are within the current date
                                             $currentDate = new DateTime();
 
-                                            if ($currentDate >= new DateTime($startDate) && $currentDate <= new DateTime($dueDate)) {
+                                            if ($currentDate >= new DateTime($startDate) && $currentDate <= new DateTime($dueDate) && $internshipStatus !== 'Terminated') {
                                                 // Check if the required forms are submitted
                                                 if (
                                                     !empty($row['indemnity']) &&
