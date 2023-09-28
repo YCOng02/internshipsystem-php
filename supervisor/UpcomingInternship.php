@@ -14,11 +14,6 @@ if (isset($_SESSION['staffID'])) {
 }
 ?>
 
-<!DOCTYPE html>
-<html>
-
-
-
 <div class="container row justify-content-md-center mx-auto">
     <div class="nav nav-tabs border-0" id="nav-tab" role="tablist">
         <button id="btnCurrent" class="nav-link  w-50 text-black" style="border-color: #FFFBD6"
@@ -75,7 +70,7 @@ if (isset($_SESSION['staffID'])) {
                     if ($result->num_rows > 0) {
 
                         while ($row = $result->fetch_assoc()) {
-                            echo '<tr style="cursor: pointer;" onclick="viewStudent(' . $row['studID'] . ')" data-href="page_url.php?studID=' . $row['studID'] . '">';
+                            echo '<tr style="cursor: pointer;" onclick="viewStudent(' . $row['studID'] . ')" data-href="StudentDetail.php?studID=' . $row['studID'] . '">';
                             echo '<td>' . $row['studID'] . '</td>';
                             echo '<td>' . $row['studName'] . '</td>';
                             echo '<td>' . $row['studEmail'] . '</td>';
