@@ -69,12 +69,12 @@ if (isset($_POST['action']) && $_POST['action'] == "updateDatabase") {
 
 
     if ($finalMark == null) {
-        $sql = "UPDATE INTERNSHIP SET $columnName = ? WHERE internshipID = ?";
+        $sql = "UPDATE internship SET $columnName = ? WHERE internshipID = ?";
         $stmt = $con->prepare($sql);
 
         $stmt->bind_param("is", $reportMark, $id);
     } else {
-        $sql = "UPDATE INTERNSHIP SET $columnName = ?, finalGrade = ? WHERE internshipID = ?";
+        $sql = "UPDATE internship SET $columnName = ?, finalGrade = ? WHERE internshipID = ?";
         $stmt = $con->prepare($sql);
 
         $stmt->bind_param("iis", $reportMark, $finalMark, $id);
