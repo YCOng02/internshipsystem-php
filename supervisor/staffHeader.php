@@ -28,10 +28,10 @@
                 <div class="collapse navbar-collapse master" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="../Supervisor/SupervisorHome.php">Home</a>
+                            <a class="nav-link" href="/SupervisorHome.php">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../Supervisor/StaffProfile.php">Profile</a>
+                            <a class="nav-link" href="/StaffProfile.php">Profile</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="../endSession">Logout</a>

@@ -1,21 +1,14 @@
 <?php
-session_start();
 $pageTitle = 'Profile';
-include 'staffHeader.php';
+include 'studentHeader.php';
 
 // Check if the session variables are set before accessing them
-if (isset($_SESSION['staffID'])) {
-    $staffID = $_SESSION['staffID'];
-    //$staffID = "ST0001";
+if (isset($_SESSION['studID'])) {
+    $studID = $_SESSION['studID'];
 } else {
     // Handle the case where the session data is not set
-    $staffID = "empty session";
+    $studID = "empty session";
 }
-?>
-
-<html lang="en">
-
-<?php
 
 require '../student/connect.php';
 
@@ -24,21 +17,25 @@ if ($con->connect_error) {
     throw new Exception("Connection failed: " . $con->connect_error);
 } else {
     //generate the record in the table
-    $sql = "SELECT * FROM staff WHERE staffID = '" . $staffID . "'; ";
+    $sql = "SELECT * FROM student WHERE studID = '" . $studID . "'; ";
 
     $result = $con->query($sql);
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        $staffName = $row['staffName'];
-        $staffEmail = $row['staffEmail'];
-        $staffIC = $row['staffIC'];
-        $staffGender = $row['staffGender'];
-        $staffPhoneNo = $row['staffPhoneNo'];
+        $studName = $row['studName'];
+        $studEmail = $row['studEmail'];
+        $studID = $row['studID'];
+        $studIC = $row['studIC'];
+        $studGender = $row['studGender'];
+        $studPhoneNo = $row['studPhoneNo'];
+        $studQualification = $row['studQualification'];
     }
     $con->close();
 }
 ?>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script type="text/javascript">
     function editInfo() {
@@ -47,7 +44,8 @@ if ($con->connect_error) {
         var inputIC = document.getElementById("lblIC");
         var inputEmail = document.getElementById("lblEmail");
         var inputGender = document.getElementById("lblGender");
-        var inputPhoneNo = document.getElementById("lblPhoneNo");
+        var inputPhoneNo = document.getElementById("lblPhone");
+        var inputQualification = document.getElementById("lblQualification");
         var editBtn = document.getElementById("btnEdit");
         var cancelBtn = document.getElementById("btnCancel");
         var saveBtn = document.getElementById("btnSave");
@@ -65,7 +63,7 @@ if ($con->connect_error) {
     function saveInfo() {
         var staffID = document.getElementById("lblID").value;
         var staffName = document.getElementById("lblName").value;
-        var staffPhoneNo = document.getElementById("lblPhoneNo").value;
+        var staffPhoneNo = document.getElementById("lblPhone").value;
 
         $.ajax({
             type: "POST",
@@ -89,7 +87,7 @@ if ($con->connect_error) {
         var inputIC = document.getElementById("lblIC");
         var inputEmail = document.getElementById("lblEmail");
         var inputGender = document.getElementById("lblGender");
-        var inputPhoneNo = document.getElementById("lblPhoneNo");
+        var inputPhoneNo = document.getElementById("lblPhone");
         var editBtn = document.getElementById("btnEdit");
         var cancelBtn = document.getElementById("btnCancel");
         var saveBtn = document.getElementById("btnSave");
@@ -108,20 +106,19 @@ if ($con->connect_error) {
     }
 
 </script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 <div class="container rounded bg-white mt-0 mb-5">
-
     <div class="row">
         <div class="col-md-3 border-right">
             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                 <img class="rounded-circle mt-5" width="150px"
-                    src="https://gohchankeong-bucket.s3.amazonaws.com/user-portrait.jpg">
+                    src="https://internship-bucket-23.s3.amazonaws.com/user-portrait.jpg">
                 <span class="font-weight-bold">
-                    <?php echo $staffName; ?>
+                    <?php echo $studName; ?>
                 </span>
                 <span class="text-black-50">
-                    <?php echo $staffEmail; ?>
+                    <?php echo $studEmail; ?>
                 </span>
             </div>
         </div>
@@ -133,69 +130,72 @@ if ($con->connect_error) {
                         <h4 class="text-right">Profile Settings</h4>
                     </div>
                     <div class="justify-content-end align-items-end col-2">
-                        <button id="btnEdit" onclick="editInfo()">Edit</button>
+                        <button id="editBtn" onclick="editInfo()">Edit</button>
                     </div>
                 </div>
 
                 <div class="row mt-3">
                     <div class="col-md-12">
                         <label class="labels">Name</label>
-                        <input id="lblName" type="text" class="form-control" placeholder="Name"
-                            value="<?php echo $staffName; ?>" readonly>
+                        <input type="text" class="form-control" placeholder="name" id="lblName" name="lblName"
+                            value="<?php echo $studName; ?>" readonly>
                     </div>
                 </div>
 
                 <div class="row mt-3">
                     <div class="col-md-12">
-                        <label class="labels">Staff ID</label>
-                        <input id="lblID" type="text" class="form-control" placeholder="ID"
-                            value="<?php echo $staffID; ?>" readonly>
+                        <label class="labels">Student ID</label>
+
+
+
+                        <input type="text" class="form-control" placeholder="first name" id="lblID"
+                            value="<?php echo $studID; ?>" readonly>
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-12">
                         <label class="labels">Email Address</label>
-                        <input id="lblEmail" type="text" class="form-control" placeholder="Email"
-                            value="<?php echo $staffEmail; ?>" readonly>
+                        <input type="text" class="form-control" placeholder="first name" id="lblEmail"
+                            value="<?php echo $studEmail; ?>" readonly>
                     </div>
                 </div>
                 <div class="row mt-2">
                     <div class="col-md-12">
                         <label class="labels">IC No. </label>
-                        <input id="lblIC" type="text" class="form-control" placeholder="IC Name"
-                            value="<?php echo $staffIC; ?>" readonly>
+                        <input type="text" class="form-control" placeholder="first name" id="lblIC"
+                            value="<?php echo $studIC; ?>" readonly>
                     </div>
                 </div>
                 <div class="row mt-2">
                     <div class="col-md-12">
                         <label class="labels">Gender</label>
-                        <input id="lblGender" type="text" class="form-control" placeholder="Gender"
-                            value="<?php echo $staffGender; ?>" readonly>
+                        <input type="text" class="form-control" placeholder="first name" id="lblGender"
+                            value="<?php echo $studGender; ?>" readonly>
                     </div>
                 </div>
 
                 <div class="row mt-2">
                     <div class="col-md-12">
                         <label class="labels">Phone No. </label>
-                        <input id="lblPhoneNo" type="phone" class="form-control" placeholder="first name"
-                            value="<?php echo $staffPhoneNo; ?>" readonly>
+                        <input type="text" class="form-control" placeholder="first name" id="lblPhone"
+                            value="<?php echo $studPhoneNo; ?>" readonly>
                     </div>
                 </div>
 
-                <div class="row mt-2 justify-content-end">
-                    <div class="col-md-12 ">
-                        <button style="display: none; width: 70px;" class="mx-auto" id="btnCancel"
-                            onclick="cancelSavingInfo()">Cancel</button>
-                        <button style="display: none; width: 70px;" class="mx-auto" id="btnSave"
-                            onclick="saveInfo()">Save</button>
+                <div class="row mt-2">
+                    <div class="col-md-12">
+                        <label class="labels">Qualification </label>
+                        <input type="text" class="form-control" placeholder="first name" id="lblQualification"
+                            value="<?php echo $studQualification; ?>" readonly>
                     </div>
                 </div>
+
             </div>
         </div>
-
     </div>
 </div>
 
 <?php
-include 'staffFooter.php';
+    include 'studentFooter.php';
+
 ?>
