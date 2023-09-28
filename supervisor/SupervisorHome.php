@@ -68,7 +68,7 @@ if (isset($_SESSION['staffID'])) {
                         AND startMonthYear < '" . $currentDate . "'
                         AND endMonthYear > '" . $currentDate . "'
                         AND  Sta.staffID = '" . $staffID . "'
-                        ORDER BY Ses.sessionID";
+                        ORDER BY Ses.sessionI";
 
                     $result = $con->query($sql);
 
