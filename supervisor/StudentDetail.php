@@ -498,6 +498,30 @@ if ($con->connect_error) {
                         $("#result").html(response);
                     }
                 });
+
+
+                switch (column) {
+                    case "monthlyReport1Grade":
+                        var inputfield = document.getElementById("enterMonthlyReport1Grade");
+                        inputfield.value = marks;
+                        break;
+                    case "monthlyReport2Grade":
+                        var inputfield = document.getElementById("enterMonthlyReport2Grade");
+                        inputfield.value = marks;
+                        break;
+                    case "monthlyReport3Grade":
+                        var inputfield = document.getElementById("enterMonthlyReport3Grade").value;
+                        inputfield.value = marks;
+                        break;
+                    case "evaluationReportGrade":
+                        var inputfield = document.getElementById("enterEvaluationReportGrade").value;
+                        inputfield.value = marks;
+                        break;
+                    default:
+                        final = null;
+                        break;
+                }
+
                 location.reload();
             }
         }
