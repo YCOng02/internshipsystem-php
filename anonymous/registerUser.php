@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($studentStmt->execute()) {
 
         // Query to retrieve the maximum ID from your table
-        $sql = "SELECT COUNT(*) as count FROM internship";
+        $sql = "SELECT COUNT(*) as count FROM INTERNSHIP";
 
         $result = $con->query($sql);
 
@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $internshipID = 'I' . $last4Digits . $last3Digits;
 
         $internshipInsertQuery = "INSERT INTO INTERNSHIP (internshipID, studID, sessionID, internshipStatus, indemnityStatus, parentAcknowledgementStatus, 
-        companyAcceptanceStatus) VALUES (?, ?, ?,?,?,?,?)";
+        companyAcceptanceStatus) VALUES (?,?,?,?,?,?,?)";
         $internshipStmt = $con->prepare($internshipInsertQuery);
         $internshipStmt->bind_param("sssssss", $internshipID, $studentID, $internshipSession, $internshipStatus, $formStatus, $formStatus, $formStatus);
 
