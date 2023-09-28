@@ -88,11 +88,7 @@ session_start();
                 </div>
             </form>
 
-            <div class="text-center">
-                <div class="row text-center mb-4">
-                    <a class="mt-2 loginLink" href="Register.php">Register</a>
-                </div>
-            </div>
+            
         </div>
     </div>
 </body>
