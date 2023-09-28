@@ -84,9 +84,9 @@ if ($con->connect_error) {
         inputEmail.setAttribute("readOnly", "true");
         inputPhoneNo.setAttribute("readOnly", "true");
 
-        inputName.value = "<?php echo $staffName; ?>";
-        inputEmail.value = "<?php echo $staffEmail; ?>";
-        inputPhoneNo.value = "<?php echo $staffPhoneNo; ?>";
+        inputName.value = "<?php echo $studName; ?>";
+        inputEmail.value = "<?php echo $studEmail; ?>";
+        inputPhoneNo.value = "<?php echo $studhoneNo; ?>";
 
         cancelBtn.style.display = 'none';
         editBtn.style.display = 'inline-block';
