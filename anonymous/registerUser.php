@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($studentStmt->execute()) {
 
         // Query to retrieve the maximum ID from your table
-        $sql = "SELECT COUNT(*) as count FROM INTERNSHIP";
+        $sql = "SELECT COUNT(*) as count FROM internship";
 
         $result = $con->query($sql);
 
