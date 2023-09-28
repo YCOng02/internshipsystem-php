@@ -53,10 +53,11 @@ CREATE TABLE `internship` (
 -- Dumping data for table `internship`
 --
 
-INSERT INTO `internship` (`internshipID`, `studID`, `sessionID`, `indemnity`, `indemnityStatus`, `parentAcknowledgement`, `parentAcknowledgementStatus`, `companyAcceptance`, `companyAcceptanceStatus`, `monthlyReport1`, `monthlyReport1Grade`, `monthlyReport2`, `monthlyReport2Grade`, `monthlyReport3`, `monthlyReport3Grade`, `evaluationReport`, `evaluationReportGrade`, `finalGrade`, `internshipStatus`) VALUES
-('I2308001', '2205950', '202308', '..\\Report\\CW 3_ Review Dialogue.pdf', 'Pending', 'Sample parent ack text', 'Pending', 'Sample company ack text', 'Pending', 'Sample report 1 text', 95, 'Sample report 2 text', 88, 'Sample report 3 text', 92, 'Sample eval report text', 90, 94, 'Completed'),
-('I2308002', '2205951', '202308', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 90, NULL, 90, NULL, 90, NULL, 90, 90, 'In Progress'),
-('I2308003', '1111111', '202308', NULL, 'Missing', NULL, 'Missing', NULL, 'Missing', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Progress');
+INSERT INTO internship (internshipID, studID, sessionID, indemnity, indemnityStatus, parentAcknowledgement, parentAcknowledgementStatus, companyAcceptance, companyAcceptanceStatus, monthlyReport1, monthlyReport1Grade, monthlyReport2, monthlyReport2Grade, monthlyReport3, monthlyReport3Grade, evaluationReport, evaluationReportGrade, finalGrade, internshipStatus) VALUES
+('I2308001', '2205950', '202308', '../Report/FOCS_StudF01 Indemnity Letter.pdf', 'Accepted', '../Report/FOCS_StudF02 Parent Acknowledgement Form.pdf', 'Accepted','../Report/FOCS_EmpF02 Company Acceptance Letter.pdf', 'Accepted', '../Report/FOCS_StudF03 1st Student Progress Report.pdf', '90', '../Report/FOCS_StudF03 2nd Student Progress Report.pdf', '70', '../Report/FOCS_StudF03 3rd Student Progress Report.pdf
+', '80', '../Report/FOCS_StudF04 - Students_Evaluation Report.pdf', '90', '84', 'Completed'),
+('I2308002', '2205951', '202308', NULL, 'Missing', NULL, 'Missing', NULL, 'Missing', NULL, 90, NULL, 90, NULL, 90, NULL, NULL,  NULL, 'In Progress'),
+('I2308003', '1111111', '202312', NULL, 'Missing', NULL, 'Missing', NULL, 'Missing', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'In Progress');
 
 -- --------------------------------------------------------
 
@@ -77,7 +78,9 @@ CREATE TABLE `session` (
 
 INSERT INTO `session` (`sessionID`, `startMonthYear`, `endMonthYear`, `qualification`) VALUES
 ('202301', '2023-12-01', '2024-03-31', 'Diploma'),
-('202308', '2023-09-01', '2023-12-31', 'Degree');
+('202308', '2023-09-01', '2023-12-31', 'Degree'),
+('202312', '2023-12-01', '2023-03-31', 'Diploma'),
+('202402', '2023-02-01', '2024-05-31', 'Degree');
 
 -- --------------------------------------------------------
 
@@ -100,7 +103,8 @@ CREATE TABLE `staff` (
 --
 
 INSERT INTO `staff` (`staffID`, `staffName`, `staffEmail`, `staffIC`, `staffGender`, `staffPhoneNo`, `staffPassword`) VALUES
-('ST0001', 'Jane Smith', 'jane.smith@example.com', '010120070669', 'Female', '0104012866', 'ef92b778bafe771e89245b89ecbc08a44a4e166c0665991188');
+('ST0001', 'Jane Smith', 'jane.smith@gmail.com', '010120070668', 'Female', '0104012866', 'ef92b778bafe771e89245b89ecbc08a44a4e166c0665991188'),
+('ST0002', 'David Rodriguez', 'davidr@gmail.com', '011220024773', 'Male', '01110475124', 'ef92b778bafe771e89245b89ecbc08a44a4e166c0665991188');
 
 -- --------------------------------------------------------
 
@@ -124,9 +128,9 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`studID`, `studName`, `studEmail`, `studIC`, `studGender`, `studPhoneNo`, `studPassword`, `studQualification`) VALUES
-('1111111', 'Jason', 'jason@gmail.com', '111111223333', 'Male', '0174012863', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a', 'Diploma'),
 ('2205950', 'John Doe', 'john.doe@example.com', '010120070666', 'Male', '0174012866', 'ef92b778bafe771e89245b89ecbc08a44a4e166c0665991188', 'Degree'),
-('2205951', 'Vincent Choo', 'vincentchoo88@gmail.com', '111111223333', 'Male', '0174012863', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a', 'Diploma');
+('2205951', 'Jason', 'jason@gmail.com', '111111223333', 'Male', '0174012863', 'ef92b778bafe771e89245b89ecbc08a44a4e166c0665991188', 'Diploma'),
+('1111111', 'Vincent Choo', 'vincentchoo88@gmail.com', '111122223333', 'Male', '0174012863', 'ef92b778bafe771e89245b89ecbc08a44a4e166c0665991188', 'Diploma');
 
 -- --------------------------------------------------------
 
@@ -144,7 +148,10 @@ CREATE TABLE `supervisor` (
 --
 
 INSERT INTO `supervisor` (`sessionID`, `staffID`) VALUES
-('202308', 'ST0001');
+('202308', 'ST0001'),
+('202301', 'ST0002'),
+('202312', 'ST0001'),
+('202402', 'ST0002');
 
 --
 -- Indexes for dumped tables
