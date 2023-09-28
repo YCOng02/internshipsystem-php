@@ -2,11 +2,11 @@
 session_start();
 
 // Check if the 'login_successful' session variable is not set
-if (!isset($_SESSION['login_successful'])) {
-    // Redirect back to the login page
-    header("Location: ../anonymous/UserLogin.php");
-    exit(); // Ensure the script stops executing after the redirect
-}
+// if (!isset($_SESSION['login_successful'])) {
+//     // Redirect back to the login page
+//     header("Location: ../anonymous/UserLogin.php");
+//     exit(); // Ensure the script stops executing after the redirect
+// }
 ?>
 
 <!DOCTYPE html>
