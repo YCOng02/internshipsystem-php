@@ -79,6 +79,12 @@ if ($con->connect_error) {
                 $("#result").html(response);
             }
         });
+
+        var inputName = document.getElementById("lblName");
+        var inputPhoneNo = document.getElementById("lblPhone");
+        inputName.value = staffName;
+        inputPhoneNo.value = staffPhoneNo;
+
         location.reload();
     }
 

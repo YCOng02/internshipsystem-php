@@ -66,6 +66,12 @@ if ($con->connect_error) {
                 $("#result").html(response);
             }
         });
+
+        var inputName = document.getElementById("lblName");
+        var inputPhoneNo = document.getElementById("lblPhone");
+        inputName.value = studName;
+        inputPhoneNo.value = studPhoneNo;
+
         location.reload();
     }
 
@@ -161,7 +167,7 @@ if ($con->connect_error) {
                 <div class="row mt-2">
                     <div class="col-md-12">
                         <label class="labels">Phone No. </label>
-                        <input type="text" class="form-control" placeholder="first name" id="lblPhone"
+                        <input type="text" class="form-control" placeholder="Phone Number" id="lblPhone"
                             value="<?php echo $studPhoneNo; ?>" readonly>
                     </div>
                 </div>

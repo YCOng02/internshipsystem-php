@@ -30,14 +30,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = mysqli_real_escape_string($con, $email);
 
     // Prepare and execute an INSERT statement for the STUDENT table
-    $studentInsertQuery = "INSERT INTO STUDENT (studName, studID, studIC, studEmail, studGender, studPhoneNo, studPassword, studQualification) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $studentInsertQuery = "INSERT INTO student (studName, studID, studIC, studEmail, studGender, studPhoneNo, studPassword, studQualification) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     $studentStmt = $con->prepare($studentInsertQuery);
     $studentStmt->bind_param("ssssssss", $name, $studentID, $nric, $email, $gender, $phone, $hashedPassword, $qualification);
 
     if ($studentStmt->execute()) {
 
         // Query to retrieve the maximum ID from your table
-        $sql = "SELECT COUNT(*) as count FROM internship";
+        $sql = "SELECT COUNT(*) as count FROM INTERNSHIP";
 
         $result = $con->query($sql);
 
@@ -56,12 +56,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $last3Digits = str_pad((string) $nextID, 3, '0', STR_PAD_LEFT);
         $internshipStatus = "In Progress";
+        $formStatus = "Missing";
         $last4Digits = substr($internshipSession, -4);
         $internshipID = 'I' . $last4Digits . $last3Digits;
 
-        $internshipInsertQuery = "INSERT INTO INTERNSHIP (internshipID, studID, sessionID, internshipStatus) VALUES (?, ?, ?,?)";
+        $internshipInsertQuery = "INSERT INTO INTERNSHIP (internshipID, studID, sessionID, internshipStatus, indemnityStatus, parentAcknowledgementStatus, 
+        companyAcceptanceStatus) VALUES (?,?,?,?,?,?,?)";
         $internshipStmt = $con->prepare($internshipInsertQuery);
-        $internshipStmt->bind_param("ssss", $internshipID, $studentID, $internshipSession, $internshipStatus);
+        $internshipStmt->bind_param("sssssss", $internshipID, $studentID, $internshipSession, $internshipStatus, $formStatus, $formStatus, $formStatus);
 
         if ($internshipStmt->execute()) {
             echo '<script>
