@@ -96,6 +96,7 @@ if (isset($_SESSION['staffID'])) {
 
 
                 ?>
+                
             </table>
             <!--If the user click a row, it will be redirect to the student detail page-->
             <script type="text/javascript">
