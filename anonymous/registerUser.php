@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $last4Digits = substr($internshipSession, -4);
         $internshipID = 'I' . $last4Digits . $last3Digits;
 
-        $internshipInsertQuery = "INSERT INTO INTERNSHIP (internshipID, studID, sessionID, internshipStatus, indemnityStatus, parentAcknowledgementStatus, 
+        $internshipInsertQuery = "INSERT INTO internship (internshipID, studID, sessionID, internshipStatus, indemnityStatus, parentAcknowledgementStatus, 
         companyAcceptanceStatus) VALUES (?,?,?,?,?,?,?)";
         $internshipStmt = $con->prepare($internshipInsertQuery);
         $internshipStmt->bind_param("sssssss", $internshipID, $studentID, $internshipSession, $internshipStatus, $formStatus, $formStatus, $formStatus);
