@@ -7,6 +7,9 @@ session_start();
 //     header("Location: ../anonymous/UserLogin.php");
 //     exit(); // Ensure the script stops executing after the redirect
 // }
+
+
+$studID = $_SESSION['studID'];
 ?>
 
 <!DOCTYPE html>

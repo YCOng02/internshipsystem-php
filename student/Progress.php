@@ -56,7 +56,7 @@ include 'studentHeader.php';
 
                         <?php
                         // Define the studentID (you need to retrieve this based on the logged-in student)
-                        $studID = 2205950; // Replace with the actual student ID
+                        //$studID = 2205950; // Replace with the actual student ID
                         
                         // Create a connection
                         require 'connect.php';

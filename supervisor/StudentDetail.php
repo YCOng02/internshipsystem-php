@@ -16,7 +16,7 @@ if (isset($_SESSION['staffID'])) {
 if (isset($_GET['StudID'])) {
     $studID = $_GET['StudID'];
 }
-$studID = 2205950;
+//$studID = 2205950;
 
 // Create a connection
 require '../student/connect.php';
