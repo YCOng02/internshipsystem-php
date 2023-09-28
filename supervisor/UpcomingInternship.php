@@ -70,7 +70,7 @@ if (isset($_SESSION['staffID'])) {
                 if ($result->num_rows > 0) {
 
                     while ($row = $result->fetch_assoc()) {
-                        echo '<tr style="cursor: pointer;" onclick="viewStudent(' . $row['studID'] . ')" data-href="StudentDetail.php?studID=' . $row['studID'] . '">';
+                        echo '<tr style="cursor: pointer;" onclick="viewStudent(' . $row['studID'] . ')" data-href="supervisor/StudentDetail.php?studID=' . $row['studID'] . '">';
                         echo '<td>' . $row['studID'] . '</td>';
                         echo '<td>' . $row['studName'] . '</td>';
                         echo '<td>' . $row['studEmail'] . '</td>';
@@ -95,7 +95,7 @@ if (isset($_SESSION['staffID'])) {
         <script type="text/javascript">
             function viewStudent(id) {
                 // Perform a client-side redirection to the StudentDetail.aspx page with the extracted ID
-                window.location.href = "StudentDetail.php?StudID=" + encodeURIComponent(id);
+                window.location.href = "/supervisor/StudentDetail.php?StudID=" + encodeURIComponent(id);
             }
         </script>
 
