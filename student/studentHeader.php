@@ -22,6 +22,11 @@ if (!isset($_SESSION['login_successful'])) {
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+        crossorigin="anonymous"></script>
+  
 </head>
 
 <body style="min-height:100vh;" class="bg-bright">
@@ -38,7 +43,7 @@ if (!isset($_SESSION['login_successful'])) {
                             <a class="nav-link" href="PreInternship.php">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Profile.php">Profile <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="StudentProfile.php">Profile <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="../Logout.php">Logout <span class="sr-only">(current)</span></a>

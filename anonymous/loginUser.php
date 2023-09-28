@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["studID"] = $studID;
             $_SESSION["login_successful"] = "1";
             // Redirect to Profile.php
-            header("Location: ../student/InternshipDetails.php");
+            header("Location: student/InternshipDetails.php");
 
         } else {
             // Authentication failed, display an error message or redirect to a login page with an error message
