@@ -117,7 +117,7 @@ if ($con->connect_error) {
                         <h4 class="text-right">Profile Settings</h4>
                     </div>
                     <div class="justify-content-end align-items-end col-2">
-                        <button id="editBtn" onclick="editInfo()">Edit</button>
+                        <button id="btnEdit" onclick="editInfo()">Edit</button>
                     </div>
                 </div>
 
