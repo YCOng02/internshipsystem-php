@@ -14,9 +14,6 @@ if (isset($_SESSION['staffID'])) {
 }
 ?>
 
-<!DOCTYPE html>
-<html>
-
 <div class="container row justify-content-md-center mx-auto">
     <div class="nav nav-tabs border-0" id="nav-tab" role="tablist">
         <button id="btnCurrent" class="nav-link active w-50 text-white border-0"
