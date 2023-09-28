@@ -46,7 +46,7 @@ include 'header.php';
                             required>
                         <label for="txtPassword">Password</label>
                     </div>
-                    <i id="passwordVisibility" class="fa-solid fa-eye-slash" onclick="togglePasswordVisibility()"
+                    <i 
                         style="width: 10%; margin-top: 30px"></i>
                 </div>
                 <div class="text-center">
@@ -65,19 +65,3 @@ include 'header.php';
         </div>
     </div>
 </div>
-
-<script>
-    function togglePasswordVisibility() {
-        var passwordInput = document.getElementsByName('txtPassword')[0];
-        var iconPasswordVisibility = document.getElementById('passwordVisibility');
-
-        if (passwordInput.type === "password") {
-            passwordInput.type = "text";
-            iconPasswordVisibility.classList.remove("fa-eye-slash");
-            iconPasswordVisibility.classList.add("fa-eye");
-        } else {
-            passwordInput
-
-        }
-    }
-</script>

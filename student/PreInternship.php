@@ -4,25 +4,6 @@ include 'studentHeader.php';
 ?>
 
     <form style="min-height:100vh;" id="form1" runat="server">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container">
-                <a class="navbar-brand" href="#">
-                    <img src="https://gohchankeong-bucket.s3.amazonaws.com/logo.png" width="250" height="80" />
-                </a>
-                <div class="navbar-container">
-                    <div class="collapse navbar-collapse master" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="supervisor">Home <span class="sr-only">(current)</span></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </nav>
-
-       
-
         <div class="container row justify-content-md-center mx-auto">
             <div class="nav nav-tabs border-0" id="nav-tab" role="tablist">
                 <a href="PreInternship.php" class="nav-link active col-4 text-white border-0 text-center" style="background-color: #dc143c">
@@ -53,7 +34,7 @@ include 'studentHeader.php';
 
                 <?php
                 // Define the studentID (you need to retrieve this based on the logged-in student)
-                $studID = 2205950; // Replace with the actual student ID
+                //$studID = 2205950; // Replace with the actual student ID
                 
                 // Create a connection
                 require 'connect.php';

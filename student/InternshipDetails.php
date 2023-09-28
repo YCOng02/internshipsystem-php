@@ -25,7 +25,7 @@ include 'studentHeader.php';
             <?php
             require 'connect.php';
             // Define the studentID (you need to retrieve this based on the logged-in student)
-            $studID = 2205950; // Replace with the actual student ID
+            //$studID = 2205950; // Replace with the actual student ID
             
             // SQL query to retrieve internship details
             $internshipSql = "SELECT 
