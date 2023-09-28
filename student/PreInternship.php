@@ -57,6 +57,7 @@ include 'studentHeader.php';
                             $indemnity = $row['indemnity'];
                             $parentAcknowledgement = $row['parentAcknowledgement'];
                             $companyAcceptance = $row['companyAcceptance'];
+                            $internshipStatus = $row['internshipStatus'];
 
                             if ($sessionResult->num_rows > 0) {
                                 $sessionRow = $sessionResult->fetch_assoc();
@@ -104,7 +105,7 @@ include 'studentHeader.php';
                                 echo '</form>';
                             } else {
                                 // Check if the due date has passed and the status is "Missing"
-                                if ($dueDateTimestamp < $currentDateTimestamp && $row['indemnityStatus'] === 'Missing') {
+                                if ($dueDateTimestamp < $currentDateTimestamp && $row['indemnityStatus'] === 'Missing' || $internshipStatus === 'Terminated') {
                                     // Due date has passed and the form is not submitted, disable the "Submit" button
                                     echo '<button type="button" class="btn btn-secondary" disabled>Submit Disabled</button>';
                                 } else {
@@ -156,7 +157,7 @@ include 'studentHeader.php';
                                 echo '</form>';
                             } else {
                                 // Check if the due date has passed and the status is "Missing"
-                                if ($dueDateTimestamp < $currentDateTimestamp && $row['parentAcknowledgementStatus'] === 'Missing') {
+                                if ($dueDateTimestamp < $currentDateTimestamp && $row['parentAcknowledgementStatus'] === 'Missing' || $internshipStatus === 'Terminated') {
                                     // Due date has passed and the form is not submitted, disable the "Submit" button
                                     echo '<button type="button" class="btn btn-secondary" disabled>Submit Disabled</button>';
                                 } else {
@@ -192,7 +193,7 @@ include 'studentHeader.php';
                                 echo '<input type="submit" class="btn btn-secondary" value="Unsubmit" name="submit" />';
                                 echo '</form>';
                             } else {
-                                if ($dueDateTimestamp < $currentDateTimestamp && $row['companyAcceptanceStatus'] === 'Missing') {
+                                if ($dueDateTimestamp < $currentDateTimestamp && $row['companyAcceptanceStatus'] === 'Missing' || $internshipStatus === 'Terminated') {
                                     // Due date has passed and the form is not submitted, disable the "Submit" button
                                     echo '<button type="button" class="btn btn-secondary" disabled>Submit Disabled</button>';
                                 } else {
