@@ -435,7 +435,7 @@ if ($con->connect_error) {
                     $("#result").html(response);
                 }
             });
-            window.location.href = "SupervisorHome.php";
+            window.location.href = "/supervisor/SupervisorHome.php";
             return true;
         } else {
             return false;
