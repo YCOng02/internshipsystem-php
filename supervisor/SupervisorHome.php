@@ -54,9 +54,6 @@ if (isset($_SESSION['staffID'])) {
 
                 // Check for connection errors
                 if ($con->connect_error) {
-                    echo '<tr>';
-                    echo '<td colspan="6" class="text-center"> No Connection fail.</td>';
-                    echo '</tr>';
 
                     throw new Exception("Connection failed: " . $con->connect_error);
                 } else {
@@ -76,6 +73,11 @@ if (isset($_SESSION['staffID'])) {
                     $result = $con->query($sql);
 
                     if ($result->num_rows > 0) {
+
+                        echo '<tr>';
+                        echo '<td colspan="6" class="text-center"> No Connection fail.</td>';
+                        echo '</tr>';
+
 
                         while ($row = $result->fetch_assoc()) {
                             echo '<tr style="cursor: pointer;" onclick="viewStudent(' . $row['studID'] . ')" data-href="StudentDetail.php?studID=' . $row['studID'] . '">';
