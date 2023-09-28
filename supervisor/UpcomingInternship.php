@@ -95,7 +95,7 @@ if (isset($_SESSION['staffID'])) {
         <script type="text/javascript">
             function viewStudent(id) {
                 // Perform a client-side redirection to the StudentDetail.aspx page with the extracted ID
-                window.location.href = "StudentDetail.php?StudID=" + encodeURIComponent(id);
+                window.location.href = "/StudentDetail.php?StudID=" + encodeURIComponent(id);
             }
         </script>
 
