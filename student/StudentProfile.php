@@ -2,14 +2,6 @@
 $pageTitle = 'Profile';
 include 'studentHeader.php';
 
-// Check if the session variables are set before accessing them
-if (isset($_SESSION['studID'])) {
-    $studID = $_SESSION['studID'];
-} else {
-    // Handle the case where the session data is not set
-    $studID = "empty session";
-}
-
 require '../student/connect.php';
 
 // Check for connection errors
@@ -34,8 +26,6 @@ if ($con->connect_error) {
     $con->close();
 }
 ?>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script type="text/javascript">
     function editInfo() {
@@ -108,6 +98,9 @@ if ($con->connect_error) {
 </script>
 
 
+
+
+
 <div class="container rounded bg-white mt-0 mb-5">
     <div class="row">
         <div class="col-md-3 border-right">
@@ -145,9 +138,6 @@ if ($con->connect_error) {
                 <div class="row mt-3">
                     <div class="col-md-12">
                         <label class="labels">Student ID</label>
-
-
-
                         <input type="text" class="form-control" placeholder="first name" id="lblID"
                             value="<?php echo $studID; ?>" readonly>
                     </div>
@@ -190,10 +180,22 @@ if ($con->connect_error) {
                     </div>
                 </div>
 
+                <div class="row mt-2 justify-content-end">
+                    <div class="col-md-12 ">
+                        <button style="display: none; width: 70px;" class="mx-auto" id="btnCancel"
+                            onclick="cancelSavingInfo()">Cancel</button>
+                        <button style="display: none; width: 70px;" class="mx-auto" id="btnSave"
+                            onclick="saveInfo()">Save</button>
+                    </div>
+                </div>
+
+
+
             </div>
         </div>
     </div>
 </div>
+
 
 <?php
     include 'studentFooter.php';
