@@ -54,6 +54,10 @@ if (isset($_SESSION['staffID'])) {
 
                 // Check for connection errors
                 if ($con->connect_error) {
+                    echo '<tr>';
+                    echo '<td colspan="6" class="text-center"> No Connection fail.</td>';
+                    echo '</tr>';
+
                     throw new Exception("Connection failed: " . $con->connect_error);
                 } else {
                     //generate the record in the table
@@ -74,7 +78,7 @@ if (isset($_SESSION['staffID'])) {
                     if ($result->num_rows > 0) {
 
                         while ($row = $result->fetch_assoc()) {
-                            echo '<tr style="cursor: pointer;" onclick="viewStudent(' . $row['studID'] . ')" data-href="page_url.php?studID=' . $row['studID'] . '">';
+                            echo '<tr style="cursor: pointer;" onclick="viewStudent(' . $row['studID'] . ')" data-href="StudentDetail.php?studID=' . $row['studID'] . '">';
                             echo '<td>' . $row['studID'] . '</td>';
                             echo '<td>' . $row['studName'] . '</td>';
                             echo '<td>' . $row['studEmail'] . '</td>';
@@ -96,7 +100,6 @@ if (isset($_SESSION['staffID'])) {
 
 
                 ?>
-                
             </table>
             <!--If the user click a row, it will be redirect to the student detail page-->
             <script type="text/javascript">
