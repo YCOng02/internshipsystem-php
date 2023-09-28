@@ -14,7 +14,7 @@ if (isset($_POST['action']) && $_POST['action'] == "updateDatabase") {
         die("Connection failed: " . $con->connect_error);
     }
 
-    $sql = "UPDATE INTERNSHIP SET $columnName = ? WHERE internshipID = ?";
+    $sql = "UPDATE internship SET $columnName = ? WHERE internshipID = ?";
     $stmt = $con->prepare($sql);
 
     $stmt->bind_param("ss", $status, $id);
@@ -39,7 +39,7 @@ if (isset($_POST['action']) && $_POST['action'] == "updateDatabase") {
         die("Connection failed: " . $con->connect_error);
     }
 
-    $sql = "UPDATE INTERNSHIP SET internshipStatus = ? WHERE internshipID = ?";
+    $sql = "UPDATE internship SET internshipStatus = ? WHERE internshipID = ?";
     $stmt = $con->prepare($sql);
 
     $stmt->bind_param("ss", $status, $id);

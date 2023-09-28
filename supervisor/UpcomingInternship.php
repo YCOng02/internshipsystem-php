@@ -61,7 +61,7 @@ if (isset($_SESSION['staffID'])) {
                 } else {
                     //generate the record in the table
                     $sql = "SELECT Stud.studID, Stud.studName, Stud.studEmail, Stud.studPhoneNo, Stud.studQualification, Ses.sessionID, Sta.staffID, Sta.staffName
-                        FROM Student Stud, Internship I, Session Ses, Supervisor Sup, Staff Sta
+                        FROM student Stud, internship I, session Ses, supervisor Sup, staff Sta
                         WHERE Stud.studID = I.studID
                         AND I.sessionID = Ses.sessionID
                         AND Ses.sessionID = Sup.sessionID
