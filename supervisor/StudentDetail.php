@@ -25,7 +25,7 @@ if ($con->connect_error) {
     throw new Exception("Connection failed: " . $con->connect_error);
 } else {
     //generate the record in the table
-    $sql = "SELECT * FROM Student Stud, Internship I, Session Ses 
+    $sql = "SELECT * FROM student Stud, internship I, session Ses 
             WHERE Stud.studID = I.studID
             AND I.sessionID = Ses.sessionID
             AND Stud.studID = " . $studID;
