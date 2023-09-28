@@ -56,12 +56,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $last3Digits = str_pad((string) $nextID, 3, '0', STR_PAD_LEFT);
         $internshipStatus = "In Progress";
+        $formStatus = "Missing";
         $last4Digits = substr($internshipSession, -4);
         $internshipID = 'I' . $last4Digits . $last3Digits;
 
-        $internshipInsertQuery = "INSERT INTO INTERNSHIP (internshipID, studID, sessionID, internshipStatus) VALUES (?, ?, ?,?)";
+        $internshipInsertQuery = "INSERT INTO INTERNSHIP (internshipID, studID, sessionID, internshipStatus, indemnityStatus, parentAcknowledgementStatus, 
+        companyAcceptanceStatus) VALUES (?, ?, ?,?,?,?,?)";
         $internshipStmt = $con->prepare($internshipInsertQuery);
-        $internshipStmt->bind_param("ssss", $internshipID, $studentID, $internshipSession, $internshipStatus);
+        $internshipStmt->bind_param("sssssss", $internshipID, $studentID, $internshipSession, $internshipStatus, $formStatus, $formStatus, $formStatus);
 
         if ($internshipStmt->execute()) {
             echo '<script>
